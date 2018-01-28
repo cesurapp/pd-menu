@@ -17,5 +17,5 @@ namespace Pd\MenuBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class PdMenuBundle extends Bundle
-{
+{ 
 }
