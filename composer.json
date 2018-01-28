@@ -1,0 +1,28 @@
+{
+  "name": "rapaydin/pd-menu",
+  "description": "Symfony Simple Menu Bundle",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "pdadmin",
+    "pdmenu",
+    "menu",
+    "symfony-menu"
+  ],
+  "homepage": "https://github.com/rmznpydn/pd-menu",
+  "authors": [
+    {
+      "name": "Ramazan APAYDIN",
+      "homepage": "http://ramazanapaydin.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1.0",
+    "twig/twig": "~2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pd\\MenuBundle\\": ""
+    }
+  }
+}

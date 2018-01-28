@@ -1,0 +1,19 @@
+services:
+    _defaults:
+        public: false
+
+    # Render Service
+    pd_menu.render:
+        class: Pd\MenuBundle\Render\TwigRender
+        arguments: ['@twig']
+
+    # Item Process Service
+    pd_menu.process:
+        class: Pd\MenuBundle\Builder\ItemProcess
+        arguments: ['@router', '@security.authorization_checker', '@request_stack']
+
+    # Twig Extension
+    pd_menu.twig_extension:
+        class: Pd\MenuBundle\Twig\MenuExtension
+        arguments: ['@pd_menu.render','@pd_menu.process','@service_container']
+        tags: ['twig.extension']

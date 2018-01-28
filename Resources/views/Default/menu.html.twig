@@ -1,0 +1,45 @@
+{% extends '@PdMenu/Default/menuBase.html.twig' %}
+
+{# Begin Menu #}
+{% block menu_begin %}
+    <ul id="{{ menu.name }}" {{ arrayToAttr(menu.childAttr) }}>
+        {% for depth in menu.child %}
+            {% set menu = depth %}
+            {{ block('menu_item') }}
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{# Create Menu Item #}
+{% block menu_item %}
+    <li {{ arrayToAttr(menu.listAttr) }}>
+        {# Create Link #}
+        {% if menu.link %}
+            <a href="{{ menu.link }}" {{ arrayToAttr(menu.linkAttr) }}>
+                {% if menu.extra('label_icon') %}
+                    <i class="material-icons">{{ menu.extra('label_icon') }}</i>
+                {% endif %}
+                <span {{ arrayToAttr(menu.labelAttr) }}>
+                    {{ menu.extra('label_translate', true) ? menu.label|trans : menu.label }}
+                </span>
+            </a>
+        {% else %}
+            {% if menu.extra('label_icon') %}
+                <i class="material-icons">{{ menu.extra('label_icon') }}</i>
+            {% endif %}
+            <span {{ arrayToAttr(menu.labelAttr) }}>
+                {{ menu.extra('label_translate', true) ? menu.label|trans : menu.label }}
+            </span>
+        {% endif %}
+
+        {# Create Dropdown #}
+        {% if menu.child|length %}
+            <ul {{ arrayToAttr(menu.childAttr) }}>
+                {% for depth in menu.child %}
+                    {% set menu = depth %}
+                    {{ block('menu_item') }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endblock %}
