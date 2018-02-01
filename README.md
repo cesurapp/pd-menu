@@ -1,6 +1,11 @@
 # pdMenu Bundle
 Simple fast object-oriented menu maker for Symfony 4
 
+[![Latest Stable Version](https://poser.pugx.org/rmznpydn/pd-menu/version)](https://packagist.org/packages/rmznpydn/pd-menu)
+[![Total Downloads](https://poser.pugx.org/rmznpydn/pd-menu/downloads)](https://packagist.org/packages/rmznpydn/pd-menu)
+[![Latest Unstable Version](https://poser.pugx.org/rmznpydn/pd-menu/v/unstable)](//packagist.org/packages/rmznpydn/pd-menu)
+[![License](https://poser.pugx.org/rmznpydn/pd-menu/license)](https://packagist.org/packages/rmznpydn/pd-menu)
+
 Installation
 ---
 
