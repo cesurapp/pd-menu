@@ -14,7 +14,7 @@
 
 namespace Pd\MenuBundle\Builder;
 
-interface ItemInterface
+interface ItemInterface extends \ArrayAccess
 {
     /**
      * Get Item Array ID | Order ID.
@@ -31,22 +31,6 @@ interface ItemInterface
      * @return ItemInterface
      */
     public function setId($id = null);
-
-    /**
-     * Get Item Name.
-     *
-     * @return string
-     */
-    public function getName(): string;
-
-    /**
-     * Set Item Name.
-     *
-     * @param string $name
-     *
-     * @return ItemInterface
-     */
-    public function setName(string $name);
 
     /**
      * Get Menu Name.
@@ -79,6 +63,22 @@ interface ItemInterface
      * @return ItemInterface
      */
     public function setLink(string $link);
+
+    /**
+     * Get Order Number
+     *
+     * @return int
+     */
+    public function getOrder(): int;
+
+    /**
+     * Set Order Number
+     *
+     * @param int $order
+     *
+     * @return ItemInterface
+     */
+    public function setOrder(int $order);
 
     /**
      * Get Menu Route Name.

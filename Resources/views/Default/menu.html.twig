@@ -2,7 +2,7 @@
 
 {# Begin Menu #}
 {% block menu_begin %}
-    <ul id="{{ menu.name }}" {{ arrayToAttr(menu.childAttr) }}>
+    <ul id="{{ menu.id }}" {{ arrayToAttr(menu.childAttr) }}>
         {% for depth in menu.child %}
             {% set menu = depth %}
             {{ block('menu_item') }}

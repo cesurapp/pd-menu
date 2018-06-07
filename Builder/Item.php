@@ -22,11 +22,6 @@ class Item implements ItemInterface
     private $id = null;
 
     /**
-     * @var null
-     */
-    private $name = null;
-
-    /**
      * @var string
      */
     private $label = '';
@@ -35,6 +30,11 @@ class Item implements ItemInterface
      * @var string
      */
     private $link = '';
+
+    /**
+     * @var int
+     */
+    private $order = null;
 
     /**
      * @var array
@@ -86,9 +86,9 @@ class Item implements ItemInterface
      *
      * @param string $name
      */
-    public function __construct(string $name)
+    public function __construct(string $id)
     {
-        $this->name = $name;
+        $this->id = $id;
     }
 
     public function getId()
@@ -99,18 +99,6 @@ class Item implements ItemInterface
     public function setId($id = null)
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name)
-    {
-        $this->name = $name;
 
         return $this;
     }
@@ -135,6 +123,18 @@ class Item implements ItemInterface
     public function setLink(string $link)
     {
         $this->link = $link;
+
+        return $this;
+    }
+
+    public function getOrder(): int
+    {
+        return $this->order;
+    }
+
+    public function setOrder(int $order)
+    {
+        $this->order = $order;
 
         return $this;
     }
@@ -246,7 +246,7 @@ class Item implements ItemInterface
         return $this;
     }
 
-    public function addChild($child, $childId = null)
+    public function addChild($child, $order = null)
     {
         // Create New Item
         if (!$child instanceof ItemInterface) {
@@ -255,24 +255,18 @@ class Item implements ItemInterface
 
         // Child Set Parent & ID
         $child
-            ->setParent($this)
-            ->setId($childId);
+            ->setOrder($order ?? count($this->child))
+            ->setParent($this);
 
         // Add Child This
-        if ($child->getId()) {
-            $this->child[$child->getId()] = $child;
-        } else {
-            $this->child[] = $child;
-            end($this->child);
-            $child->setId(key($this->child));
-        }
+        $this->child[$child->getId()] = $child;
 
         return $child;
     }
 
-    public function addChildParent($child, $childId = null)
+    public function addChildParent($child, $order = null)
     {
-        return $this->parent->addChild($child, $childId);
+        return $this->parent->addChild($child, $order);
     }
 
     public function getParent()
@@ -299,5 +293,27 @@ class Item implements ItemInterface
     public function getLevel(): int
     {
         return $this->parent ? $this->parent->getLevel() + 1 : 0;
+    }
+
+    public function offsetExists($childId)
+    {
+        return isset($this->child[$childId]);
+    }
+
+    public function offsetGet($childId)
+    {
+        return $this->child[$childId];
+    }
+
+    public function offsetSet($childId, $order)
+    {
+        return $this->addChild($childId, $order);
+    }
+
+    public function offsetUnset($childId)
+    {
+        if ($this->offsetExists($childId)) {
+            unset($this->child[$childId]);
+        }
     }
 }
