@@ -65,14 +65,14 @@ interface ItemInterface extends \ArrayAccess
     public function setLink(string $link);
 
     /**
-     * Get Order Number
+     * Get Order Number.
      *
      * @return int
      */
     public function getOrder(): int;
 
     /**
-     * Set Order Number
+     * Set Order Number.
      *
      * @param int $order
      *

@@ -37,7 +37,7 @@ class ItemProcess implements ItemProcessInterface
     /**
      * ItemProcess constructor.
      *
-     * @param RouterInterface $router
+     * @param RouterInterface               $router
      * @param AuthorizationCheckerInterface $security
      */
     public function __construct(RouterInterface $router, AuthorizationCheckerInterface $security)
@@ -50,7 +50,7 @@ class ItemProcess implements ItemProcessInterface
      * Menu Processor.
      *
      * @param ItemInterface $menu
-     * @param array $options
+     * @param array         $options
      *
      * @return ItemInterface
      */
@@ -64,7 +64,6 @@ class ItemProcess implements ItemProcessInterface
 
         return $menu;
     }
-
 
     private function recursiveProcess(ItemInterface $menu, $options)
     {
@@ -104,7 +103,7 @@ class ItemProcess implements ItemProcessInterface
                 }
 
                 // Set Child List Class
-                $child->setChildAttr(array_merge_recursive($child->getChildAttr(), ['class' => 'menu_level_' . $child->getLevel()]));
+                $child->setChildAttr(array_merge_recursive($child->getChildAttr(), ['class' => 'menu_level_'.$child->getLevel()]));
 
                 $this->recursiveProcess($child, $options);
             }
