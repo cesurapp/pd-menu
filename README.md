@@ -273,9 +273,9 @@ class MenuListener
 ```
 Let's create a service for the listener.
 ```yaml
-    App\Menu\MenuListener:
-        tags:
-            - { name: kernel.event_listener, event: custom.menu.event, method: onCreate }
+App\Menu\MenuListener:
+    tags:
+        - { name: kernel.event_listener, event: custom.menu.event, method: onCreate }
 ```
 
 
