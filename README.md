@@ -9,7 +9,7 @@ Simple fast object-oriented menu maker for Symfony 4
 Installation
 ---
 
-### Step 1: Download the Bundle
+#### Step 1: Download the Bundle
 
 Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
@@ -22,7 +22,7 @@ This command requires you to have Composer installed globally, as explained
 in the [installation chapter](https://getcomposer.org/doc/00-intro.md)
 of the Composer documentation.
 
-### Step 2: Enable the Bundle
+#### Step 2: Enable the Bundle
 
 With Symfony 4, the package will be activated automatically. But if something goes wrong, you can install it manually.
 
@@ -42,12 +42,12 @@ return [
 Create Your First menu
 ---
 
-### Step 1: Without Service
+#### Step 1: Without Service
 You can create menus without service. You can load the necessary parameters using `$options`
 
 ```php
 <?php
-// Menu/FirstMenu.php
+// src/Menu/FirstMenu.php
 
 namespace App\Menu;
 
@@ -100,12 +100,12 @@ class FirstMenu extends Menu
 }
 ```
 
-### Step 2: With Service
+#### Step 2: With Service
 You can load the necessary parameters using `$options`
 
 ```php
 <?php
-// Menu/FirstMenu.php
+// src/Menu/FirstMenu.php
 
 namespace App\Menu;
 
@@ -194,6 +194,88 @@ You can change the default options.
     'depth': null
     'currentClass': 'active'
 }) }}
+```
+
+Create Menu Event & Event Listener
+---
+#### Step 1: Create Menu
+You must register the menu as a service for the menu activity.
+
+```php
+<?php
+// src/Menu/FirstMenu.php
+
+namespace App\Menu;
+
+use Pd\MenuBundle\Builder\ItemInterface;
+use Pd\MenuBundle\Builder\Menu;
+use Pd\MenuBundle\Event\PdMenuEvent;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+class FirstMenu extends Menu
+{
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
+     * MainNav constructor.
+     * @param EventDispatcherInterface $eventDispatcher
+     */
+    public function __construct(EventDispatcherInterface $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+    }
+        
+    /**
+     * Override 
+     */
+    public function createMenu(array $options = []): ItemInterface
+    {
+        //...
+        
+        /*
+         * Create Event
+         */
+        $this->eventDispatcher->dispatch(
+            'custom.menu.event',
+            new PdMenuEvent($menu)
+        );
+
+        return $menu;
+    }
+}
+```
+#### Step 2: Create Menu Listener
+Now let's create a listener for the event.
+```php
+<?php
+// src/Listener/MenuListener.php
+
+namespace App\Listener;
+
+use Pd\MenuBundle\Event\PdMenuEvent;
+
+class MenuListener
+{
+    public function onCreate(PdMenuEvent $event)
+    {
+        // Get Menu Items
+        $menu = $event->getMenu();
+
+        // Add New Item
+        $menu->addChild('demo_item', 5)
+            ->setLabel('Home Page')
+            ->setRoute('home_route');
+    }
+}
+```
+Let's create a service for the listener.
+```yaml
+    App\Menu\MenuListener:
+        tags:
+            - { name: kernel.event_listener, event: custom.menu.event, method: onCreate }
 ```
 
 
