@@ -19,6 +19,7 @@ use Pd\MenuBundle\Builder\ItemProcessInterface;
 use Pd\MenuBundle\Builder\MenuInterface;
 use Pd\MenuBundle\Render\RenderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Pd Menu Bundle Twig Extension.
@@ -43,6 +44,11 @@ class MenuExtension extends \Twig_Extension
     private $container;
 
     /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
      * Default Menu Options.
      *
      * @var array
@@ -56,15 +62,16 @@ class MenuExtension extends \Twig_Extension
     /**
      * MenuExtension constructor.
      *
-     * @param RenderInterface      $engine
+     * @param RenderInterface $engine
      * @param ItemProcessInterface $itemProcess
-     * @param ContainerInterface   $container
+     * @param ContainerInterface $container
      */
-    public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess, ContainerInterface $container)
+    public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess, ContainerInterface $container, TranslatorInterface $translator)
     {
         $this->engine = $engine;
         $this->itemProcess = $itemProcess;
         $this->container = $container;
+        $this->translator = $translator;
     }
 
     /**
@@ -85,7 +92,7 @@ class MenuExtension extends \Twig_Extension
      * Render Menu.
      *
      * @param string $menuClass
-     * @param array  $options
+     * @param array $options
      *
      * @return string
      */
@@ -99,6 +106,7 @@ class MenuExtension extends \Twig_Extension
 
         // Render
         if ($menu instanceof MenuInterface) {
+            // Process Menu
             $menu = $this->itemProcess->processMenu($menu->createMenu($options), $options);
 
             return $this->engine->render($menu, $options);
@@ -111,7 +119,7 @@ class MenuExtension extends \Twig_Extension
      * Get Menu Array.
      *
      * @param string $menuClass
-     * @param array  $options
+     * @param array $options
      *
      * @return ItemInterface|bool
      */
@@ -147,6 +155,12 @@ class MenuExtension extends \Twig_Extension
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 $value = implode(' ', $value);
+            }
+
+            if (strtolower($key) === 'title') {
+                if (!isset($array['title_translate'])) {
+                    $value = $this->translator->trans($value);
+                }
             }
 
             $attr .= sprintf('%s="%s"', $key, $value);

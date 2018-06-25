@@ -62,7 +62,9 @@ class FirstMenu extends Menu
     public function createMenu(array $options = []): ItemInterface
     {
         // Create Root Item
-        $menu = $this->createRoot('settings_menu');
+        $menu = $this
+            ->createRoot('settings_menu', true) // Create event is "settings_menu.event"
+            ->setChildAttr(['data-parent' => 'admin_account_list']); // Add Parent Menu to Html Tag
 
         // Create Menu Items
         $menu->addChild('nav_config_general', 1)
@@ -131,7 +133,9 @@ class FirstMenu extends Menu
     public function createMenu(array $options = []): ItemInterface
     {
         // Create Root Item
-        $menu = $this->createRoot('settings_menu');
+        $menu = $this
+            ->createRoot('settings_menu', true) // Create event is "settings_menu.event"
+            ->setChildAttr(['data-parent' => 'admin_account_list']); // Add Parent Menu to Html Tag
 
         // Create Menu Items
         $menu->addChild('nav_config_general', 1)
@@ -198,55 +202,9 @@ You can change the default options.
 
 Create Menu Event & Event Listener
 ---
-#### Step 1: Create Menu
-You must register the menu as a service for the menu activity.
+#### Step 1: Create Menu Event
+All menus automatic events are generated. Example : "menu_name.event"
 
-```php
-<?php
-// src/Menu/FirstMenu.php
-
-namespace App\Menu;
-
-use Pd\MenuBundle\Builder\ItemInterface;
-use Pd\MenuBundle\Builder\Menu;
-use Pd\MenuBundle\Event\PdMenuEvent;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
-class FirstMenu extends Menu
-{
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    /**
-     * MainNav constructor.
-     * @param EventDispatcherInterface $eventDispatcher
-     */
-    public function __construct(EventDispatcherInterface $eventDispatcher)
-    {
-        $this->eventDispatcher = $eventDispatcher;
-    }
-        
-    /**
-     * Override 
-     */
-    public function createMenu(array $options = []): ItemInterface
-    {
-        //...
-        
-        /*
-         * Create Event
-         */
-        $this->eventDispatcher->dispatch(
-            'custom.menu.event',
-            new PdMenuEvent($menu)
-        );
-
-        return $menu;
-    }
-}
-```
 #### Step 2: Create Menu Listener
 Now let's create a listener for the event.
 ```php
@@ -275,7 +233,7 @@ Let's create a service for the listener.
 ```yaml
 App\Menu\MenuListener:
     tags:
-        - { name: kernel.event_listener, event: custom.menu.event, method: onCreate }
+        - { name: kernel.event_listener, event: settings_menu.event, method: onCreate }
 ```
 
 

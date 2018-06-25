@@ -35,8 +35,8 @@ class Menu implements MenuInterface
      *
      * @return ItemInterface
      */
-    final public function createRoot(string $name): ItemInterface
+    final public function createRoot(string $name, $event = true): ItemInterface
     {
-        return new Item($name);
+        return new Item($name, $event);
     }
 }

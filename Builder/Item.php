@@ -82,13 +82,24 @@ class Item implements ItemInterface
     private $parent = null;
 
     /**
+     * @var boolean
+     */
+    private $event;
+
+    /**
      * Item constructor.
      *
      * @param string $name
      */
-    public function __construct(string $id)
+    public function __construct(string $id, $event)
     {
         $this->id = $id;
+        $this->event = $event;
+    }
+
+    public function isEvent()
+    {
+        return $this->event;
     }
 
     public function getId()
@@ -250,7 +261,7 @@ class Item implements ItemInterface
     {
         // Create New Item
         if (!$child instanceof ItemInterface) {
-            $child = new self($child);
+            $child = new self($child, $this->event);
         }
 
         // Child Set Parent & ID
@@ -274,7 +285,7 @@ class Item implements ItemInterface
         return $this->parent;
     }
 
-    public function setParent($item)
+    public function setParent(ItemInterface $item)
     {
         if ($item === $this) {
             throw new \InvalidArgumentException('Item cannot be a child of itself');

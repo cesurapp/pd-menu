@@ -10,10 +10,10 @@ services:
     # Item Process Service
     pd_menu.process:
         class: Pd\MenuBundle\Builder\ItemProcess
-        arguments: ['@router', '@security.authorization_checker', '@request_stack']
+        arguments: ['@router', '@security.authorization_checker', '@event_dispatcher']
 
     # Twig Extension
     pd_menu.twig_extension:
         class: Pd\MenuBundle\Twig\MenuExtension
-        arguments: ['@pd_menu.render','@pd_menu.process','@service_container']
+        arguments: ['@pd_menu.render','@pd_menu.process','@service_container', '@translator']
         tags: ['twig.extension']

@@ -17,6 +17,13 @@ namespace Pd\MenuBundle\Builder;
 interface ItemInterface extends \ArrayAccess
 {
     /**
+     * Menu Created Event
+     *
+     * @return boolean
+     */
+    public function isEvent();
+
+    /**
      * Get Item Array ID | Order ID.
      *
      * @return int|null
@@ -247,7 +254,7 @@ interface ItemInterface extends \ArrayAccess
      *
      * @return ItemInterface
      */
-    public function setParent($item);
+    public function setParent(ItemInterface $item);
 
     /**
      * Check Menu is Root.
