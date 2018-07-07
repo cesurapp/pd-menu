@@ -82,7 +82,7 @@ class Item implements ItemInterface
     private $parent = null;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $event;
 

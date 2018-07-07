@@ -1,10 +1,10 @@
 # pdMenu Bundle
 Simple fast object-oriented menu maker for Symfony 4
 
-[![Latest Stable Version](https://poser.pugx.org/rmznpydn/pd-menu/version)](https://packagist.org/packages/rmznpydn/pd-menu)
-[![Total Downloads](https://poser.pugx.org/rmznpydn/pd-menu/downloads)](https://packagist.org/packages/rmznpydn/pd-menu)
-[![Latest Unstable Version](https://poser.pugx.org/rmznpydn/pd-menu/v/unstable)](//packagist.org/packages/rmznpydn/pd-menu)
-[![License](https://poser.pugx.org/rmznpydn/pd-menu/license)](https://packagist.org/packages/rmznpydn/pd-menu)
+[![Packagist](https://img.shields.io/packagist/dt/rmznpydn/pd-menu.svg)](https://github.com/rmznpydn/pd-menu)
+[![Github Release](https://img.shields.io/github/release/rmznpydn/pd-menu.svg)](https://github.com/rmznpydn/pd-menu)
+[![license](https://img.shields.io/github/license/rmznpydn/pd-menu.svg)](https://github.com/rmznpydn/pd-menu)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/rmznpydn/pd-menu.svg)](https://github.com/rmznpydn/pd-menu)
 
 Installation
 ---

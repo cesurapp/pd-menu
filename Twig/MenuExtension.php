@@ -62,9 +62,9 @@ class MenuExtension extends \Twig_Extension
     /**
      * MenuExtension constructor.
      *
-     * @param RenderInterface $engine
+     * @param RenderInterface      $engine
      * @param ItemProcessInterface $itemProcess
-     * @param ContainerInterface $container
+     * @param ContainerInterface   $container
      */
     public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess, ContainerInterface $container, TranslatorInterface $translator)
     {
@@ -92,7 +92,7 @@ class MenuExtension extends \Twig_Extension
      * Render Menu.
      *
      * @param string $menuClass
-     * @param array $options
+     * @param array  $options
      *
      * @return string
      */
@@ -119,7 +119,7 @@ class MenuExtension extends \Twig_Extension
      * Get Menu Array.
      *
      * @param string $menuClass
-     * @param array $options
+     * @param array  $options
      *
      * @return ItemInterface|bool
      */
@@ -157,7 +157,7 @@ class MenuExtension extends \Twig_Extension
                 $value = implode(' ', $value);
             }
 
-            if (strtolower($key) === 'title') {
+            if ('title' === mb_strtolower($key)) {
                 if (!isset($array['title_translate'])) {
                     $value = $this->translator->trans($value);
                 }
