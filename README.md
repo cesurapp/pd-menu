@@ -1,10 +1,10 @@
 # pdMenu Bundle
 Simple fast object-oriented menu maker for Symfony 4
 
-[![Packagist](https://img.shields.io/packagist/dt/rmznpydn/pd-menu.svg)](https://github.com/rmznpydn/pd-menu)
-[![Github Release](https://img.shields.io/github/release/rmznpydn/pd-menu.svg)](https://github.com/rmznpydn/pd-menu)
-[![license](https://img.shields.io/github/license/rmznpydn/pd-menu.svg)](https://github.com/rmznpydn/pd-menu)
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/rmznpydn/pd-menu.svg)](https://github.com/rmznpydn/pd-menu)
+[![Packagist](https://img.shields.io/packagist/dt/appaydin/pd-menu.svg)](https://github.com/appaydin/pd-menu)
+[![Github Release](https://img.shields.io/github/release/appaydin/pd-menu.svg)](https://github.com/appaydin/pd-menu)
+[![license](https://img.shields.io/github/license/appaydin/pd-menu.svg)](https://github.com/appaydin/pd-menu)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/appaydin/pd-menu.svg)](https://github.com/appaydin/pd-menu)
 
 Installation
 ---
@@ -15,7 +15,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```console
-$ composer require rmznpydn/pd-menu
+$ composer require appaydin/pd-menu
 ```
 
 This command requires you to have Composer installed globally, as explained
