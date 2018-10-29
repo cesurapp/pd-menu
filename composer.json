@@ -1,5 +1,5 @@
 {
-  "name": "rmznpydn/pd-menu",
+  "name": "appaydin/pd-menu",
   "description": "Symfony Simple Menu Bundle",
   "type": "symfony-bundle",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "menu",
     "symfony-menu"
   ],
-  "homepage": "https://github.com/rmznpydn/pd-menu",
+  "homepage": "https://github.com/appaydin/pd-menu",
   "authors": [
     {
       "name": "Ramazan APAYDIN",
