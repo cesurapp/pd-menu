@@ -1,15 +1,14 @@
 <?php
 
 /**
- * This file is part of the pdAdmin pd-menu package.
+ * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
  *
- * @author      Ramazan APAYDIN <iletisim@ramazanapaydin.com>
- * @copyright   Copyright (c) 2018 Ramazan APAYDIN
  * @license     LICENSE
+ * @author      Kerem APAYDIN <kerem@apaydin.me>
  *
- * @link        https://github.com/rmznpydn/pd-menu
+ * @link        https://github.com/appaydin/pd-menu
  */
 
 namespace Pd\MenuBundle\Builder;
@@ -19,6 +18,11 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
+/**
+ * Menu Item Processor.
+ *
+ * @author Kerem APAYDIN <kerem@apaydin.me>
+ */
 class ItemProcess implements ItemProcessInterface
 {
     /**
@@ -78,6 +82,12 @@ class ItemProcess implements ItemProcessInterface
         return $menu;
     }
 
+    /**
+     * Process Menu Item.
+     *
+     * @param ItemInterface $menu
+     * @param $options
+     */
     private function recursiveProcess(ItemInterface &$menu, $options)
     {
         // Get Child Menus

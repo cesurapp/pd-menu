@@ -1,15 +1,14 @@
 <?php
 
 /**
- * This file is part of the pdAdmin pd-menu package.
+ * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
  *
- * @author      Ramazan APAYDIN <iletisim@ramazanapaydin.com>
- * @copyright   Copyright (c) 2018 Ramazan APAYDIN
  * @license     LICENSE
+ * @author      Kerem APAYDIN <kerem@apaydin.me>
  *
- * @link        https://github.com/rmznpydn/pd-menu
+ * @link        https://github.com/appaydin/pd-menu
  */
 
 namespace Pd\MenuBundle\DependencyInjection;

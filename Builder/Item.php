@@ -1,19 +1,23 @@
 <?php
 
 /**
- * This file is part of the pdAdmin pd-menu package.
+ * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
  *
- * @author      Ramazan APAYDIN <iletisim@ramazanapaydin.com>
- * @copyright   Copyright (c) 2018 Ramazan APAYDIN
  * @license     LICENSE
+ * @author      Kerem APAYDIN <kerem@apaydin.me>
  *
- * @link        https://github.com/rmznpydn/pd-menu
+ * @link        https://github.com/appaydin/pd-menu
  */
 
 namespace Pd\MenuBundle\Builder;
 
+/**
+ * Menu Item Properties.
+ *
+ * @author Kerem APAYDIN <kerem@apaydin.me>
+ */
 class Item implements ItemInterface
 {
     /**
@@ -215,7 +219,7 @@ class Item implements ItemInterface
 
     public function getExtra(string $name, $default = false)
     {
-        if (is_array($this->extra) && isset($this->extra[$name])) {
+        if (\is_array($this->extra) && isset($this->extra[$name])) {
             return $this->extra[$name];
         }
 
@@ -224,7 +228,7 @@ class Item implements ItemInterface
 
     public function setExtra(string $name, $value)
     {
-        if (is_array($this->extra)) {
+        if (\is_array($this->extra)) {
             $this->extra[$name] = $value;
         } else {
             $this->extra = [$name => $value];
@@ -266,7 +270,7 @@ class Item implements ItemInterface
 
         // Child Set Parent & ID
         $child
-            ->setOrder($order ?? count($this->child))
+            ->setOrder($order ?? \count($this->child))
             ->setParent($this);
 
         // Add Child This

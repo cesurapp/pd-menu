@@ -1,19 +1,19 @@
 {
   "name": "appaydin/pd-menu",
   "description": "Symfony Simple Menu Bundle",
+  "homepage": "https://github.com/appaydin/pd-menu",
   "type": "symfony-bundle",
   "license": "MIT",
   "keywords": [
-    "pdadmin",
-    "pdmenu",
+    "pd-admin",
+    "pd-menu",
     "menu",
     "symfony-menu"
   ],
-  "homepage": "https://github.com/appaydin/pd-menu",
   "authors": [
     {
-      "name": "Ramazan APAYDIN",
-      "homepage": "http://ramazanapaydin.com"
+      "name": "Kerem APAYDIN",
+      "homepage": "http://apaydin.me"
     }
   ],
   "require": {

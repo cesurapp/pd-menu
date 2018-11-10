@@ -1,15 +1,14 @@
 <?php
 
 /**
- * This file is part of the pdAdmin pd-menu package.
+ * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
  *
- * @author      Ramazan APAYDIN <iletisim@ramazanapaydin.com>
- * @copyright   Copyright (c) 2018 Ramazan APAYDIN
  * @license     LICENSE
+ * @author      Kerem APAYDIN <kerem@apaydin.me>
  *
- * @link        https://github.com/rmznpydn/pd-menu
+ * @link        https://github.com/appaydin/pd-menu
  */
 
 namespace Pd\MenuBundle\Twig;
@@ -22,9 +21,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Pd Menu Bundle Twig Extension.
+ * Menu Twig Extension.
  *
- * @author  Ramazan Apaydın <iletisim@ramazanapaydin.com>
+ * @author Kerem APAYDIN <kerem@apaydin.me>
  */
 class MenuExtension extends \Twig_Extension
 {
@@ -153,7 +152,7 @@ class MenuExtension extends \Twig_Extension
         $attr = '';
 
         foreach ($array as $key => $value) {
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 $value = implode(' ', $value);
             }
 
