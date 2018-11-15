@@ -56,6 +56,7 @@ class MenuExtension extends \Twig_Extension
         'template' => '@PdMenu/Default/menu.html.twig',
         'depth' => null,
         'currentClass' => 'active',
+        'trans_domain' => null
     ];
 
     /**
@@ -146,7 +147,7 @@ class MenuExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function arrayToAttr(array $array = [], array $append = [])
+    public function arrayToAttr(array $array = [], array $append = [], array $options = [])
     {
         $array = array_merge_recursive($array, $append);
         $attr = '';
@@ -158,7 +159,7 @@ class MenuExtension extends \Twig_Extension
 
             if ('title' === mb_strtolower($key)) {
                 if (!isset($array['title_translate'])) {
-                    $value = $this->translator->trans($value);
+                    $value = $this->translator->trans($value, [], $options['trans_domain'] ?? null);
                 }
             }
 

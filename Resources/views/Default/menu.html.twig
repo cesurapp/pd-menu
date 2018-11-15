@@ -2,7 +2,7 @@
 
 {# Begin Menu #}
 {% block menu_begin %}
-    <ul id="{{ menu.id }}" {{ arrayToAttr(menu.childAttr, {'class': 'pd-menu'}) }}>
+    <ul id="{{ menu.id }}" {{ arrayToAttr(menu.childAttr, {'class': 'pd-menu'}, options) }}>
         {% for depth in menu.child %}
             {% set menu = depth %}
             {{ block('menu_item') }}
@@ -12,29 +12,29 @@
 
 {# Create Menu Item #}
 {% block menu_item %}
-    <li {{ arrayToAttr(menu.listAttr) }}>
+    <li {{ arrayToAttr(menu.listAttr, [], options) }}>
         {# Create Link #}
         {% if menu.link %}
-            <a href="{{ menu.link }}" {{ arrayToAttr(menu.linkAttr) }}>
+            <a href="{{ menu.link }}" {{ arrayToAttr(menu.linkAttr, [], options) }}>
                 {% if menu.extra('label_icon') %}
                     <i class="material-icons">{{ menu.extra('label_icon') }}</i>
                 {% endif %}
-                <span {{ arrayToAttr(menu.labelAttr) }}>
-                    {{ menu.extra('label_translate', true) ? menu.label|trans : menu.label }}
+                <span {{ arrayToAttr(menu.labelAttr, [], options) }}>
+                    {{ menu.extra('label_translate', true) ? menu.label|trans([], options.trans_domain) : menu.label }}
                 </span>
             </a>
         {% else %}
             {% if menu.extra('label_icon') %}
                 <i class="material-icons">{{ menu.extra('label_icon') }}</i>
             {% endif %}
-            <span {{ arrayToAttr(menu.labelAttr) }}>
-                {{ menu.extra('label_translate', true) ? menu.label|trans : menu.label }}
+            <span {{ arrayToAttr(menu.labelAttr, [], options) }}>
+                {{ menu.extra('label_translate', true) ? menu.label|trans([], options.trans_domain) : menu.label }}
             </span>
         {% endif %}
 
         {# Create Dropdown #}
         {% if menu.child|length %}
-            <ul {{ arrayToAttr(menu.childAttr) }}>
+            <ul {{ arrayToAttr(menu.childAttr, [], options) }}>
                 {% for depth in menu.child %}
                     {% set menu = depth %}
                     {{ block('menu_item') }}

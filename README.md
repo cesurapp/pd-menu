@@ -197,6 +197,7 @@ You can change the default options.
     'template': '@PdMenu/Default/menu.html.twig'
     'depth': null
     'currentClass': 'active'
+    'trans_domain': 'admin'
 }) }}
 ```
 
