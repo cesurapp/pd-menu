@@ -1,19 +1,11 @@
 services:
     _defaults:
-        public: false
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
 
-    # Render Service
-    pd_menu.render:
-        class: Pd\MenuBundle\Render\TwigRender
-        arguments: ['@twig']
-
-    # Item Process Service
-    pd_menu.process:
-        class: Pd\MenuBundle\Builder\ItemProcess
-        arguments: ['@router', '@security.authorization_checker', '@event_dispatcher']
-
-    # Twig Extension
-    pd_menu.twig_extension:
-        class: Pd\MenuBundle\Twig\MenuExtension
-        arguments: ['@pd_menu.render','@pd_menu.process','@service_container', '@translator']
-        tags: ['twig.extension']
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    Pd\MenuBundle\:
+        resource: '../../*'
+        exclude: '../../{Entity,Migrations,Tests,Kernel.php}'

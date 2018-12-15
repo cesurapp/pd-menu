@@ -17,7 +17,7 @@ use Pd\MenuBundle\Builder\ItemInterface;
 use Pd\MenuBundle\Builder\ItemProcessInterface;
 use Pd\MenuBundle\Builder\MenuInterface;
 use Pd\MenuBundle\Render\RenderInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
