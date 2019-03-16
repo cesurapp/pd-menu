@@ -19,13 +19,15 @@ use Pd\MenuBundle\Builder\MenuInterface;
 use Pd\MenuBundle\Render\RenderInterface;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * Menu Twig Extension.
  *
  * @author Kerem APAYDIN <kerem@apaydin.me>
  */
-class MenuExtension extends \Twig_Extension
+class MenuExtension extends AbstractExtension
 {
     /**
      * @var RenderInterface
@@ -77,14 +79,14 @@ class MenuExtension extends \Twig_Extension
     /**
      * Create Twig Function.
      *
-     * @return array|\Twig_Function[]
+     * @return array
      */
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('pd_menu_render', [$this, 'renderMenu'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('pd_menu_get', [$this, 'getMenu']),
-            new \Twig_SimpleFunction('arrayToAttr', [$this, 'arrayToAttr'], ['is_safe' => ['html']]),
+            new TwigFunction('pd_menu_render', [$this, 'renderMenu'], ['is_safe' => ['html']]),
+            new TwigFunction('pd_menu_get', [$this, 'getMenu']),
+            new TwigFunction('arrayToAttr', [$this, 'arrayToAttr'], ['is_safe' => ['html']]),
         ];
     }
 
