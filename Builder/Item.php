@@ -23,7 +23,7 @@ class Item implements ItemInterface
     /**
      * @var int
      */
-    private $id = null;
+    private $id;
 
     /**
      * @var string
@@ -38,7 +38,7 @@ class Item implements ItemInterface
     /**
      * @var int
      */
-    private $order = null;
+    private $order;
 
     /**
      * @var array
@@ -83,7 +83,7 @@ class Item implements ItemInterface
     /**
      * @var null | ItemInterface
      */
-    private $parent = null;
+    private $parent;
 
     /**
      * @var bool
@@ -289,7 +289,7 @@ class Item implements ItemInterface
         return $this->parent;
     }
 
-    public function setParent(ItemInterface $item)
+    public function setParent(self $item)
     {
         if ($item === $this) {
             throw new \InvalidArgumentException('Item cannot be a child of itself');

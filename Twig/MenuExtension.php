@@ -58,7 +58,8 @@ class MenuExtension extends AbstractExtension
         'template' => '@PdMenu/Default/menu.html.twig',
         'depth' => null,
         'currentClass' => 'active',
-        'trans_domain' => null
+        'trans_domain' => null,
+        'iconTemplate' => '<i class="material-icons">itext</i>'
     ];
 
     /**

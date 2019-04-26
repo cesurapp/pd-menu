@@ -194,10 +194,11 @@ The creation process is very simple. You can specify additional options.
 You can change the default options.
 ```twig
 {{ pd_menu_render('App\\Menu\\FirstMenu', {
-    'template': '@PdMenu/Default/menu.html.twig'
-    'depth': null
-    'currentClass': 'active'
-    'trans_domain': 'admin'
+    'template': '@PdMenu/Default/menu.html.twig',
+    'depth': null,
+    'currentClass': 'active',
+    'trans_domain': 'admin',
+    'iconTemplate' => '<i class="material-icons">itext</i>'
 }) }}
 ```
 

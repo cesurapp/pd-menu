@@ -14,6 +14,7 @@
 namespace Pd\MenuBundle\Render;
 
 use Pd\MenuBundle\Builder\ItemInterface;
+use Twig\Environment;
 
 /**
  * Menu Twig Rendering.
@@ -23,29 +24,22 @@ use Pd\MenuBundle\Builder\ItemInterface;
 class TwigRender implements RenderInterface
 {
     /**
-     * @var \Twig_Environment
+     * @var Twig_Environment
      */
     private $engine;
 
     /**
      * TwigRender constructor.
      *
-     * @param \Twig_Environment $engine
+     * @param Twig_Environment $engine
      */
-    public function __construct(\Twig_Environment $engine)
+    public function __construct(Environment $engine)
     {
         $this->engine = $engine;
     }
 
     /**
      * Render Menu.
-     *
-     * @param ItemInterface $item
-     * @param array         $options
-     *
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
      *
      * @return string
      */
