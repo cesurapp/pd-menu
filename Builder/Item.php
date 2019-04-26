@@ -289,7 +289,7 @@ class Item implements ItemInterface
         return $this->parent;
     }
 
-    public function setParent(self $item)
+    public function setParent(ItemInterface $item)
     {
         if ($item === $this) {
             throw new \InvalidArgumentException('Item cannot be a child of itself');
