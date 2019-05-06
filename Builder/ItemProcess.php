@@ -89,6 +89,7 @@ class ItemProcess implements ItemProcessInterface
     {
         // Get Child Menus
         $childs = $menu->getChild();
+        $listActive = false;
 
         // Parent Menu Route
         if (isset($menu->getChildAttr()['data-parent'])) {
@@ -97,7 +98,8 @@ class ItemProcess implements ItemProcessInterface
 
         // Sort Current Child
         foreach ($childs as $child) {
-            $active = false;
+            $childActive = false;
+
             // Set Child Process
             if ($child->getChild()) {
                 // Set Menu Depth
@@ -109,18 +111,18 @@ class ItemProcess implements ItemProcessInterface
                 // Set Child List Class
                 $child->setChildAttr(array_merge_recursive($child->getChildAttr(), ['class' => 'menu_level_' . $child->getLevel()]));
 
-                $active = $this->recursiveProcess($child, $options);
+                $childActive = $this->recursiveProcess($child, $options);
             }
 
             // Generate Route Link
             if ($child->getRoute()) {
                 $child->setLink($this->router->generate($child->getRoute()['name'], $child->getRoute()['params']));
+            }
 
-                // Link Active Class
-                if (($this->currentUri === $child->getLink()) || $active) {
-                    $active = true;
-                    $child->setListAttr(array_merge_recursive($child->getListAttr(), ['class' => $options['currentClass']]));
-                }
+            // Link Active Class
+            if ($this->currentUri === $child->getLink() || $childActive) {
+                $listActive = true;
+                $child->setListAttr(array_merge_recursive($child->getListAttr(), ['class' => $options['currentClass']]));
             }
 
             // Item Security
@@ -138,6 +140,6 @@ class ItemProcess implements ItemProcessInterface
 
         // Set Childs
         $menu->setChild($childs);
-        return $active;
+        return $listActive;
     }
 }
