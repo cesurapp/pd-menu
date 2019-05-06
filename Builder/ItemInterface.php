@@ -60,6 +60,22 @@ interface ItemInterface extends \ArrayAccess
     public function setLabel(string $label);
 
     /**
+     * Get Label After HTML
+     *
+     * @return string
+     */
+    public function getLabelAfterHtml(): string;
+
+    /**
+     * Label After Append HTML
+     *
+     * @param string $html
+     *
+     * @return mixed
+     */
+    public function setLabelAfterHtml(string $html);
+
+    /**
      * Get Menu Item URL.
      *
      * @return string
@@ -74,6 +90,22 @@ interface ItemInterface extends \ArrayAccess
      * @return ItemInterface
      */
     public function setLink(string $link);
+
+    /**
+     * Get Link After HTML
+     *
+     * @return string
+     */
+    public function getLinkAfterHtml(): string;
+
+    /**
+     * Label Link Append HTML
+     *
+     * @param string $html
+     *
+     * @return mixed
+     */
+    public function setLinkAfterHtml(string $html);
 
     /**
      * Get Order Number.
@@ -102,7 +134,7 @@ interface ItemInterface extends \ArrayAccess
      * Change Menu Route.
      *
      * @param string $route
-     * @param array  $params
+     * @param array $params
      *
      * @return ItemInterface
      */
@@ -176,7 +208,7 @@ interface ItemInterface extends \ArrayAccess
      * Get Extra Data Menu Item.
      *
      * @param string $name
-     * @param null   $default
+     * @param null $default
      *
      * @return mixed
      */

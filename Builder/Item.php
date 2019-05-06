@@ -33,7 +33,17 @@ class Item implements ItemInterface
     /**
      * @var string
      */
+    private $labelAfterHtml = '';
+
+    /**
+     * @var string
+     */
     private $link = '';
+
+    /**
+     * @var string
+     */
+    private $linkAfterHtml = '';
 
     /**
      * @var int
@@ -130,6 +140,18 @@ class Item implements ItemInterface
         return $this;
     }
 
+    public function getLabelAfterHtml(): string
+    {
+        return $this->labelAfterHtml;
+    }
+
+    public function setLabelAfterHtml(string $html)
+    {
+        $this->labelAfterHtml = $html;
+
+        return $this;
+    }
+
     public function getLink(): string
     {
         return $this->link;
@@ -138,6 +160,18 @@ class Item implements ItemInterface
     public function setLink(string $link)
     {
         $this->link = $link;
+
+        return $this;
+    }
+
+    public function getLinkAfterHtml(): string
+    {
+        return $this->linkAfterHtml;
+    }
+
+    public function setLinkAfterHtml(string $html)
+    {
+        $this->linkAfterHtml = $html;
 
         return $this;
     }

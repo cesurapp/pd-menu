@@ -22,14 +22,18 @@
                 <span {{ arrayToAttr(menu.labelAttr, [], options) }}>
                     {{ menu.extra('label_translate', true) ? menu.label|trans([], options.trans_domain)|raw : menu.label|raw }}
                 </span>
+                {{ menu.labelAfterHtml|raw }}
             </a>
+            {{ menu.linkAfterHtml|raw }}
         {% else %}
             {% if menu.extra('label_icon') %}
                 {{ options.iconTemplate|replace({ 'itext': menu.extra('label_icon') })|raw }}
             {% endif %}
             <span {{ arrayToAttr(menu.labelAttr, [], options) }}>
-                {{ menu.extra('label_translate', true) ? menu.label|trans([], options.trans_domain) : menu.label }}
+                    {{ menu.extra('label_translate', true) ? menu.label|trans([], options.trans_domain)|raw : menu.label|raw }}
             </span>
+            {{ menu.labelAfterHtml|raw }}
+            {{ menu.linkAfterHtml|raw }}
         {% endif %}
 
         {# Create Dropdown #}

@@ -84,9 +84,6 @@ class ItemProcess implements ItemProcessInterface
 
     /**
      * Process Menu Item.
-     *
-     * @param ItemInterface $menu
-     * @param $options
      */
     private function recursiveProcess(ItemInterface $menu, $options)
     {
@@ -100,23 +97,7 @@ class ItemProcess implements ItemProcessInterface
 
         // Sort Current Child
         foreach ($childs as $child) {
-            // Generate Route Link
-            if ($child->getRoute()) {
-                $child->setLink($this->router->generate($child->getRoute()['name'], $child->getRoute()['params']));
-
-                // Link Active Class
-                if ($this->currentUri === $child->getLink()) {
-                    $child->setListAttr(array_merge_recursive($child->getListAttr(), ['class' => $options['currentClass']]));
-                }
-            }
-
-            // Item Security
-            if ($child->getRoles()) {
-                if (!$this->security->isGranted($child->getRoles())) {
-                    unset($childs[$child->getId()]);
-                }
-            }
-
+            $active = false;
             // Set Child Process
             if ($child->getChild()) {
                 // Set Menu Depth
@@ -128,7 +109,25 @@ class ItemProcess implements ItemProcessInterface
                 // Set Child List Class
                 $child->setChildAttr(array_merge_recursive($child->getChildAttr(), ['class' => 'menu_level_' . $child->getLevel()]));
 
-                $this->recursiveProcess($child, $options);
+                $active = $this->recursiveProcess($child, $options);
+            }
+
+            // Generate Route Link
+            if ($child->getRoute()) {
+                $child->setLink($this->router->generate($child->getRoute()['name'], $child->getRoute()['params']));
+
+                // Link Active Class
+                if (($this->currentUri === $child->getLink()) || $active) {
+                    $active = true;
+                    $child->setListAttr(array_merge_recursive($child->getListAttr(), ['class' => $options['currentClass']]));
+                }
+            }
+
+            // Item Security
+            if ($child->getRoles()) {
+                if (!$this->security->isGranted($child->getRoles())) {
+                    unset($childs[$child->getId()]);
+                }
             }
         }
 
@@ -139,5 +138,6 @@ class ItemProcess implements ItemProcessInterface
 
         // Set Childs
         $menu->setChild($childs);
+        return $active;
     }
 }
