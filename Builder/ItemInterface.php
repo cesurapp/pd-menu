@@ -4,10 +4,8 @@
  * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
- *
  * @license     LICENSE
  * @author      Kerem APAYDIN <kerem@apaydin.me>
- *
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -25,7 +23,7 @@ interface ItemInterface extends \ArrayAccess
      *
      * @return bool
      */
-    public function isEvent();
+    public function isEvent(): bool;
 
     /**
      * Get Item Array ID | Order ID.
@@ -60,14 +58,14 @@ interface ItemInterface extends \ArrayAccess
     public function setLabel(string $label);
 
     /**
-     * Get Label After HTML
+     * Get Label After HTML.
      *
      * @return string
      */
     public function getLabelAfterHtml(): string;
 
     /**
-     * Label After Append HTML
+     * Label After Append HTML.
      *
      * @param string $html
      *
@@ -92,14 +90,14 @@ interface ItemInterface extends \ArrayAccess
     public function setLink(string $link);
 
     /**
-     * Get Link After HTML
+     * Get Link After HTML.
      *
      * @return string
      */
     public function getLinkAfterHtml(): string;
 
     /**
-     * Label Link Append HTML
+     * Label Link Append HTML.
      *
      * @param string $html
      *
@@ -134,7 +132,7 @@ interface ItemInterface extends \ArrayAccess
      * Change Menu Route.
      *
      * @param string $route
-     * @param array $params
+     * @param array  $params
      *
      * @return ItemInterface
      */
@@ -208,11 +206,11 @@ interface ItemInterface extends \ArrayAccess
      * Get Extra Data Menu Item.
      *
      * @param string $name
-     * @param null $default
+     * @param false  $default
      *
      * @return mixed
      */
-    public function getExtra(string $name, $default = null);
+    public function getExtra(string $name, $default = false);
 
     /**
      * Set Extra Data Menu Item.

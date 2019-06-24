@@ -4,10 +4,8 @@
  * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
- *
  * @license     LICENSE
  * @author      Kerem APAYDIN <kerem@apaydin.me>
- *
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -24,14 +22,14 @@ use Twig\Environment;
 class TwigRender implements RenderInterface
 {
     /**
-     * @var Twig_Environment
+     * @var Environment
      */
     private $engine;
 
     /**
      * TwigRender constructor.
      *
-     * @param Twig_Environment $engine
+     * @param Environment $engine
      */
     public function __construct(Environment $engine)
     {
@@ -40,6 +38,9 @@ class TwigRender implements RenderInterface
 
     /**
      * Render Menu.
+     *
+     * @param ItemInterface $item
+     * @param array         $options
      *
      * @return string
      */

@@ -4,17 +4,15 @@
  * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
- *
  * @license     LICENSE
  * @author      Kerem APAYDIN <kerem@apaydin.me>
- *
  * @link        https://github.com/appaydin/pd-menu
  */
 
 namespace Pd\MenuBundle\Event;
 
 use Pd\MenuBundle\Builder\ItemInterface;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Menu Event.
@@ -43,7 +41,7 @@ class PdMenuEvent extends Event
      *
      * @return ItemInterface
      */
-    public function getMenu()
+    public function getMenu(): ItemInterface
     {
         return $this->menu;
     }

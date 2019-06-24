@@ -4,19 +4,17 @@
  * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
- *
  * @license     LICENSE
  * @author      Kerem APAYDIN <kerem@apaydin.me>
- *
  * @link        https://github.com/appaydin/pd-menu
  */
 
 namespace Pd\MenuBundle\Builder;
 
 use Pd\MenuBundle\Event\PdMenuEvent;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Menu Item Processor.
@@ -48,8 +46,9 @@ class ItemProcess implements ItemProcessInterface
     /**
      * ItemProcess constructor.
      *
-     * @param RouterInterface $router
+     * @param RouterInterface               $router
      * @param AuthorizationCheckerInterface $security
+     * @param EventDispatcherInterface      $eventDispatcher
      */
     public function __construct(RouterInterface $router, AuthorizationCheckerInterface $security, EventDispatcherInterface $eventDispatcher)
     {
@@ -62,7 +61,7 @@ class ItemProcess implements ItemProcessInterface
      * Menu Processor.
      *
      * @param ItemInterface $menu
-     * @param array $options
+     * @param array         $options
      *
      * @return ItemInterface
      */
@@ -70,7 +69,7 @@ class ItemProcess implements ItemProcessInterface
     {
         // Dispatch Event
         if ($menu->isEvent()) {
-            $this->eventDispatcher->dispatch($menu->getId() . '.event', new PdMenuEvent($menu));
+            $this->eventDispatcher->dispatch(new PdMenuEvent($menu), $menu->getId().'.event');
         }
 
         // Set Current URI
@@ -84,6 +83,11 @@ class ItemProcess implements ItemProcessInterface
 
     /**
      * Process Menu Item.
+     *
+     * @param ItemInterface $menu
+     * @param $options
+     *
+     * @return bool
      */
     private function recursiveProcess(ItemInterface $menu, $options)
     {
@@ -109,7 +113,7 @@ class ItemProcess implements ItemProcessInterface
                 }
 
                 // Set Child List Class
-                $child->setChildAttr(array_merge_recursive($child->getChildAttr(), ['class' => 'menu_level_' . $child->getLevel()]));
+                $child->setChildAttr(array_merge_recursive($child->getChildAttr(), ['class' => 'menu_level_'.$child->getLevel()]));
 
                 $childActive = $this->recursiveProcess($child, $options);
             }
@@ -134,12 +138,13 @@ class ItemProcess implements ItemProcessInterface
         }
 
         // Sort Item
-        usort($childs, function ($a, $b) {
+        usort($childs, static function ($a, $b) {
             return $a->getOrder() > $b->getOrder();
         });
 
         // Set Childs
         $menu->setChild($childs);
+
         return $listActive;
     }
 }

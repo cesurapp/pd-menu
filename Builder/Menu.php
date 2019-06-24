@@ -4,10 +4,8 @@
  * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
- *
  * @license     LICENSE
  * @author      Kerem APAYDIN <kerem@apaydin.me>
- *
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -36,6 +34,7 @@ class Menu implements MenuInterface
      * Create Menu Item.
      *
      * @param string $name
+     * @param bool   $event
      *
      * @return ItemInterface
      */

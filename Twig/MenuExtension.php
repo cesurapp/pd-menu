@@ -4,10 +4,8 @@
  * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
- *
  * @license     LICENSE
  * @author      Kerem APAYDIN <kerem@apaydin.me>
- *
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -18,7 +16,7 @@ use Pd\MenuBundle\Builder\ItemProcessInterface;
 use Pd\MenuBundle\Builder\MenuInterface;
 use Pd\MenuBundle\Render\RenderInterface;
 use Psr\Container\ContainerInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -59,7 +57,7 @@ class MenuExtension extends AbstractExtension
         'depth' => null,
         'currentClass' => 'active',
         'trans_domain' => null,
-        'iconTemplate' => '<i class="material-icons">itext</i>'
+        'iconTemplate' => '<i class="material-icons">itext</i>',
     ];
 
     /**
@@ -68,6 +66,7 @@ class MenuExtension extends AbstractExtension
      * @param RenderInterface      $engine
      * @param ItemProcessInterface $itemProcess
      * @param ContainerInterface   $container
+     * @param TranslatorInterface  $translator
      */
     public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess, ContainerInterface $container, TranslatorInterface $translator)
     {
@@ -126,7 +125,7 @@ class MenuExtension extends AbstractExtension
      *
      * @return ItemInterface|bool
      */
-    public function getMenu(string $menuClass, $options = []): ItemInterface
+    public function getMenu(string $menuClass, $options = [])
     {
         // Merge Options
         $options = array_merge($this->defaultOptions, $options);
@@ -147,10 +146,11 @@ class MenuExtension extends AbstractExtension
      *
      * @param array $array
      * @param array $append
+     * @param array $options
      *
      * @return string
      */
-    public function arrayToAttr(array $array = [], array $append = [], array $options = [])
+    public function arrayToAttr(array $array = [], array $append = [], array $options = []): string
     {
         $array = array_merge_recursive($array, $append);
         $attr = '';

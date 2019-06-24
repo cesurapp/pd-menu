@@ -4,10 +4,8 @@
  * This file is part of the pd-admin pd-menu package.
  *
  * @package     pd-menu
- *
  * @license     LICENSE
  * @author      Kerem APAYDIN <kerem@apaydin.me>
- *
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -103,7 +101,8 @@ class Item implements ItemInterface
     /**
      * Item constructor.
      *
-     * @param string $name
+     * @param string $id
+     * @param $event
      */
     public function __construct(string $id, $event)
     {
@@ -111,7 +110,7 @@ class Item implements ItemInterface
         $this->event = $event;
     }
 
-    public function isEvent()
+    public function isEvent(): bool
     {
         return $this->event;
     }
