@@ -166,9 +166,9 @@ class MenuExtension extends AbstractExtension
                 }
             }
 
-            $attr .= sprintf('%s="%s"', $key, $value);
+            $attr .= sprintf('%s="%s" ', $key, $value);
         }
 
-        return $attr;
+        return trim($attr);
     }
 }
