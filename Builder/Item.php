@@ -21,82 +21,82 @@ class Item implements ItemInterface
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $label = '';
+    protected $label = '';
 
     /**
      * @var string
      */
-    private $labelAfterHtml = '';
+    protected $labelAfterHtml = '';
 
     /**
      * @var string
      */
-    private $link = '';
+    protected $link = '';
 
     /**
      * @var string
      */
-    private $linkAfterHtml = '';
+    protected $linkAfterHtml = '';
 
     /**
      * @var int
      */
-    private $order;
+    protected $order;
 
     /**
      * @var array
      */
-    private $route = [];
+    protected $route = [];
 
     /**
      * @var array
      */
-    private $linkAttr = [];
+    protected $linkAttr = [];
 
     /**
      * @var array
      */
-    private $listAttr = [];
+    protected $listAttr = [];
 
     /**
      * @var array
      */
-    private $childAttr = [];
+    protected $childAttr = [];
 
     /**
      * @var array
      */
-    private $labelAttr = [];
+    protected $labelAttr = [];
 
     /**
      * @var array
      */
-    private $extra = [];
+    protected $extra = [];
 
     /**
      * @var array
      */
-    private $roles = [];
+    protected $roles = [];
 
     /**
      * @var ItemInterface[]
      */
-    private $child = [];
+    protected $child = [];
 
     /**
      * @var null | ItemInterface
      */
-    private $parent;
+    protected $parent;
 
     /**
      * @var bool
      */
-    private $event;
+    protected $event;
 
     /**
      * Item constructor.

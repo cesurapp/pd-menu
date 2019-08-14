@@ -26,22 +26,22 @@ class ItemProcess implements ItemProcessInterface
     /**
      * @var RouterInterface
      */
-    private $router;
+    protected $router;
 
     /**
      * @var AuthorizationCheckerInterface
      */
-    private $security;
+    protected $security;
 
     /**
      * @var EventDispatcherInterface
      */
-    private $eventDispatcher;
+    protected $eventDispatcher;
 
     /**
      * @var string
      */
-    private $currentUri;
+    protected $currentUri;
 
     /**
      * ItemProcess constructor.
@@ -89,7 +89,7 @@ class ItemProcess implements ItemProcessInterface
      *
      * @return bool
      */
-    private function recursiveProcess(ItemInterface $menu, $options)
+    protected function recursiveProcess(ItemInterface $menu, $options)
     {
         // Get Child Menus
         $childs = $menu->getChild();
