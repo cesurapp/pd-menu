@@ -5,7 +5,7 @@
  *
  * @package     pd-menu
  * @license     LICENSE
- * @author      Kerem APAYDIN <kerem@apaydin.me>
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -14,14 +14,12 @@ namespace Pd\MenuBundle\Builder;
 /**
  * Menu Item Interface.
  *
- * @author Kerem APAYDIN <kerem@apaydin.me>
+ * @author Ramazan APAYDIN <apaydin541@gmail.com>
  */
 interface ItemInterface extends \ArrayAccess
 {
     /**
      * Menu Created Event.
-     *
-     * @return bool
      */
     public function isEvent(): bool;
 
@@ -43,15 +41,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get Menu Name.
-     *
-     * @return string
      */
     public function getLabel(): string;
 
     /**
      * Change Name Menu Item.
-     *
-     * @param string $label
      *
      * @return ItemInterface
      */
@@ -59,15 +53,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get Label After HTML.
-     *
-     * @return string
      */
     public function getLabelAfterHtml(): string;
 
     /**
      * Label After Append HTML.
-     *
-     * @param string $html
      *
      * @return mixed
      */
@@ -75,15 +65,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get Menu Item URL.
-     *
-     * @return string
      */
     public function getLink(): string;
 
     /**
      * Change Menu URL.
-     *
-     * @param string $link
      *
      * @return ItemInterface
      */
@@ -91,15 +77,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get Link After HTML.
-     *
-     * @return string
      */
     public function getLinkAfterHtml(): string;
 
     /**
      * Label Link Append HTML.
-     *
-     * @param string $html
      *
      * @return mixed
      */
@@ -107,15 +89,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get Order Number.
-     *
-     * @return int
      */
     public function getOrder(): int;
 
     /**
      * Set Order Number.
-     *
-     * @param int $order
      *
      * @return ItemInterface
      */
@@ -123,16 +101,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get Menu Route Name.
-     *
-     * @return array
      */
     public function getRoute(): array;
 
     /**
      * Change Menu Route.
-     *
-     * @param string $route
-     * @param array  $params
      *
      * @return ItemInterface
      */
@@ -140,15 +113,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get Link Attributes "<a>".
-     *
-     * @return array
      */
     public function getLinkAttr(): array;
 
     /**
      * Set Link Attributes "<a>".
-     *
-     * @param array $linkAttr
      *
      * @return ItemInterface
      */
@@ -156,15 +125,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get List Attributes "<li>".
-     *
-     * @return array
      */
     public function getListAttr(): array;
 
     /**
      * Set List Attributes "<li>".
-     *
-     * @param array $listAttr
      *
      * @return ItemInterface
      */
@@ -172,15 +137,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get Child List Attributes "<ul>".
-     *
-     * @return array
      */
     public function getChildAttr(): array;
 
     /**
      * Set Child List Attributes "<ul>".
-     *
-     * @param array $childAttr
      *
      * @return ItemInterface
      */
@@ -188,15 +149,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get Label Attributes.
-     *
-     * @return array
      */
     public function getLabelAttr(): array;
 
     /**
      * Set Label Interface.
-     *
-     * @param array $labelAttr
      *
      * @return ItemInterface
      */
@@ -205,8 +162,7 @@ interface ItemInterface extends \ArrayAccess
     /**
      * Get Extra Data Menu Item.
      *
-     * @param string $name
-     * @param false  $default
+     * @param false $default
      *
      * @return mixed
      */
@@ -215,7 +171,6 @@ interface ItemInterface extends \ArrayAccess
     /**
      * Set Extra Data Menu Item.
      *
-     * @param string $name
      * @param $value
      *
      * @return ItemInterface
@@ -224,15 +179,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Get Access Roles Menu Item.
-     *
-     * @return array
      */
     public function getRoles(): array;
 
     /**
      * Set Access Roles Menu Item.
-     *
-     * @param array $roles
      *
      * @return ItemInterface
      */
@@ -247,8 +198,6 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Set Child Items.
-     *
-     * @param array $child
      *
      * @return ItemInterface
      */
@@ -292,15 +241,11 @@ interface ItemInterface extends \ArrayAccess
 
     /**
      * Check Menu is Root.
-     *
-     * @return bool
      */
     public function isRoot(): bool;
 
     /**
      * Get Menu Level.
-     *
-     * @return int
      */
     public function getLevel(): int;
 }

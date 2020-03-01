@@ -5,7 +5,7 @@
  *
  * @package     pd-menu
  * @license     LICENSE
- * @author      Kerem APAYDIN <kerem@apaydin.me>
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -14,17 +14,12 @@ namespace Pd\MenuBundle\Builder;
 /**
  * Menu Item Processor Interface.
  *
- * @author Kerem APAYDIN <kerem@apaydin.me>
+ * @author Ramazan APAYDIN <apaydin541@gmail.com>
  */
 interface ItemProcessInterface
 {
     /**
      * Item Processor.
-     *
-     * @param ItemInterface $menu
-     * @param array         $options
-     *
-     * @return ItemInterface
      */
     public function processMenu(ItemInterface $menu, array $options = []): ItemInterface;
 }

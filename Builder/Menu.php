@@ -5,7 +5,7 @@
  *
  * @package     pd-menu
  * @license     LICENSE
- * @author      Kerem APAYDIN <kerem@apaydin.me>
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -14,16 +14,12 @@ namespace Pd\MenuBundle\Builder;
 /**
  * Menu Builder.
  *
- * @author Kerem APAYDIN <kerem@apaydin.me>
+ * @author Ramazan APAYDIN <apaydin541@gmail.com>
  */
 class Menu implements MenuInterface
 {
     /**
      * Creating Menu.
-     *
-     * @param array $options
-     *
-     * @return ItemInterface
      */
     public function createMenu(array $options = []): ItemInterface
     {
@@ -33,10 +29,7 @@ class Menu implements MenuInterface
     /**
      * Create Menu Item.
      *
-     * @param string $name
-     * @param bool   $event
-     *
-     * @return ItemInterface
+     * @param bool $event
      */
     final public function createRoot(string $name, $event = true): ItemInterface
     {

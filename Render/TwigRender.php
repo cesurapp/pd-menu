@@ -5,7 +5,7 @@
  *
  * @package     pd-menu
  * @license     LICENSE
- * @author      Kerem APAYDIN <kerem@apaydin.me>
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -17,7 +17,7 @@ use Twig\Environment;
 /**
  * Menu Twig Rendering.
  *
- * @author Kerem APAYDIN <kerem@apaydin.me>
+ * @author Ramazan APAYDIN <apaydin541@gmail.com>
  */
 class TwigRender implements RenderInterface
 {
@@ -28,8 +28,6 @@ class TwigRender implements RenderInterface
 
     /**
      * TwigRender constructor.
-     *
-     * @param Environment $engine
      */
     public function __construct(Environment $engine)
     {
@@ -38,11 +36,6 @@ class TwigRender implements RenderInterface
 
     /**
      * Render Menu.
-     *
-     * @param ItemInterface $item
-     * @param array         $options
-     *
-     * @return string
      */
     public function render(ItemInterface $item, array $options = []): string
     {

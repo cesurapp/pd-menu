@@ -5,7 +5,7 @@
  *
  * @package     pd-menu
  * @license     LICENSE
- * @author      Kerem APAYDIN <kerem@apaydin.me>
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -23,7 +23,7 @@ use Twig\TwigFunction;
 /**
  * Menu Twig Extension.
  *
- * @author Kerem APAYDIN <kerem@apaydin.me>
+ * @author Ramazan APAYDIN <apaydin541@gmail.com>
  */
 class MenuExtension extends AbstractExtension
 {
@@ -62,11 +62,6 @@ class MenuExtension extends AbstractExtension
 
     /**
      * MenuExtension constructor.
-     *
-     * @param RenderInterface      $engine
-     * @param ItemProcessInterface $itemProcess
-     * @param ContainerInterface   $container
-     * @param TranslatorInterface  $translator
      */
     public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess, ContainerInterface $container, TranslatorInterface $translator)
     {
@@ -93,10 +88,7 @@ class MenuExtension extends AbstractExtension
     /**
      * Render Menu.
      *
-     * @param string $menuClass
-     * @param array  $options
-     *
-     * @return string
+     * @param array $options
      */
     public function renderMenu(string $menuClass = '', $options = []): string
     {
@@ -120,8 +112,7 @@ class MenuExtension extends AbstractExtension
     /**
      * Get Menu Array.
      *
-     * @param string $menuClass
-     * @param array  $options
+     * @param array $options
      *
      * @return ItemInterface|bool
      */
@@ -143,12 +134,6 @@ class MenuExtension extends AbstractExtension
 
     /**
      * Array to Html Attr Convert.
-     *
-     * @param array $array
-     * @param array $append
-     * @param array $options
-     *
-     * @return string
      */
     public function arrayToAttr(array $array = [], array $append = [], array $options = []): string
     {

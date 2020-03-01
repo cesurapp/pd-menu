@@ -5,7 +5,7 @@
  *
  * @package     pd-menu
  * @license     LICENSE
- * @author      Kerem APAYDIN <kerem@apaydin.me>
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -16,17 +16,12 @@ use Pd\MenuBundle\Builder\ItemInterface;
 /**
  * Render Interface.
  *
- * @author Kerem APAYDIN <kerem@apaydin.me>
+ * @author Ramazan APAYDIN <apaydin541@gmail.com>
  */
 interface RenderInterface
 {
     /**
      * Render Menu.
-     *
-     * @param ItemInterface $item
-     * @param array         $options
-     *
-     * @return string
      */
     public function render(ItemInterface $item, array $options = []): string;
 }

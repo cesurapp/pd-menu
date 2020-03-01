@@ -5,7 +5,7 @@
  *
  * @package     pd-menu
  * @license     LICENSE
- * @author      Kerem APAYDIN <kerem@apaydin.me>
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -17,7 +17,7 @@ use Symfony\Contracts\EventDispatcher\Event;
 /**
  * Menu Event.
  *
- * @author Kerem APAYDIN <kerem@apaydin.me>
+ * @author Ramazan APAYDIN <apaydin541@gmail.com>
  */
 class PdMenuEvent extends Event
 {
@@ -28,8 +28,6 @@ class PdMenuEvent extends Event
 
     /**
      * MainNavEvent constructor.
-     *
-     * @param ItemInterface $menu
      */
     public function __construct(ItemInterface $menu)
     {
@@ -38,8 +36,6 @@ class PdMenuEvent extends Event
 
     /**
      * Get Menu.
-     *
-     * @return ItemInterface
      */
     public function getMenu(): ItemInterface
     {

@@ -5,7 +5,7 @@
  *
  * @package     pd-menu
  * @license     LICENSE
- * @author      Kerem APAYDIN <kerem@apaydin.me>
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
  * @link        https://github.com/appaydin/pd-menu
  */
 
@@ -19,7 +19,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 /**
  * Menu Item Processor.
  *
- * @author Kerem APAYDIN <kerem@apaydin.me>
+ * @author Ramazan APAYDIN <apaydin541@gmail.com>
  */
 class ItemProcess implements ItemProcessInterface
 {
@@ -45,10 +45,6 @@ class ItemProcess implements ItemProcessInterface
 
     /**
      * ItemProcess constructor.
-     *
-     * @param RouterInterface               $router
-     * @param AuthorizationCheckerInterface $security
-     * @param EventDispatcherInterface      $eventDispatcher
      */
     public function __construct(RouterInterface $router, AuthorizationCheckerInterface $security, EventDispatcherInterface $eventDispatcher)
     {
@@ -59,11 +55,6 @@ class ItemProcess implements ItemProcessInterface
 
     /**
      * Menu Processor.
-     *
-     * @param ItemInterface $menu
-     * @param array         $options
-     *
-     * @return ItemInterface
      */
     public function processMenu(ItemInterface $menu, array $options = []): ItemInterface
     {
@@ -84,7 +75,6 @@ class ItemProcess implements ItemProcessInterface
     /**
      * Process Menu Item.
      *
-     * @param ItemInterface $menu
      * @param $options
      *
      * @return bool
