@@ -60,10 +60,8 @@ class MenuExtension extends AbstractExtension
         'iconTemplate' => '<i class="material-icons">itext</i>',
     ];
 
-    /**
-     * MenuExtension constructor.
-     */
-    public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess, ContainerInterface $container, TranslatorInterface $translator)
+    public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess,
+                                ContainerInterface $container, TranslatorInterface $translator)
     {
         $this->engine = $engine;
         $this->itemProcess = $itemProcess;
@@ -88,7 +86,10 @@ class MenuExtension extends AbstractExtension
     /**
      * Render Menu.
      *
+     * @param string $menuClass
      * @param array $options
+     *
+     * @return string
      */
     public function renderMenu(string $menuClass = '', $options = []): string
     {
@@ -112,6 +113,7 @@ class MenuExtension extends AbstractExtension
     /**
      * Get Menu Array.
      *
+     * @param string $menuClass
      * @param array $options
      *
      * @return ItemInterface|bool
@@ -134,6 +136,12 @@ class MenuExtension extends AbstractExtension
 
     /**
      * Array to Html Attr Convert.
+     *
+     * @param array $array
+     * @param array $append
+     * @param array $options
+     *
+     * @return string
      */
     public function arrayToAttr(array $array = [], array $append = [], array $options = []): string
     {

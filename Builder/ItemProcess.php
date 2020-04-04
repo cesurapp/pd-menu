@@ -43,9 +43,6 @@ class ItemProcess implements ItemProcessInterface
      */
     protected $currentUri;
 
-    /**
-     * ItemProcess constructor.
-     */
     public function __construct(RouterInterface $router, AuthorizationCheckerInterface $security, EventDispatcherInterface $eventDispatcher)
     {
         $this->router = $router;
@@ -55,6 +52,11 @@ class ItemProcess implements ItemProcessInterface
 
     /**
      * Menu Processor.
+     *
+     * @param ItemInterface $menu
+     * @param array $options
+     *
+     * @return ItemInterface
      */
     public function processMenu(ItemInterface $menu, array $options = []): ItemInterface
     {
@@ -75,11 +77,12 @@ class ItemProcess implements ItemProcessInterface
     /**
      * Process Menu Item.
      *
+     * @param ItemInterface $menu
      * @param $options
      *
      * @return bool
      */
-    protected function recursiveProcess(ItemInterface $menu, $options)
+    protected function recursiveProcess(ItemInterface $menu, $options): bool
     {
         // Get Child Menus
         $childs = $menu->getChild();
@@ -120,10 +123,8 @@ class ItemProcess implements ItemProcessInterface
             }
 
             // Item Security
-            if ($child->getRoles()) {
-                if (!$this->security->isGranted($child->getRoles())) {
-                    unset($childs[$child->getId()]);
-                }
+            if ($child->getRoles() && !$this->security->isGranted($child->getRoles())) {
+                unset($childs[$child->getId()]);
             }
         }
 

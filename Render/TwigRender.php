@@ -26,9 +26,6 @@ class TwigRender implements RenderInterface
      */
     private $engine;
 
-    /**
-     * TwigRender constructor.
-     */
     public function __construct(Environment $engine)
     {
         $this->engine = $engine;
@@ -36,6 +33,11 @@ class TwigRender implements RenderInterface
 
     /**
      * Render Menu.
+     *
+     * @param ItemInterface $item
+     * @param array $options
+     *
+     * @return string
      */
     public function render(ItemInterface $item, array $options = []): string
     {

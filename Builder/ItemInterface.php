@@ -26,142 +26,184 @@ interface ItemInterface extends \ArrayAccess
     /**
      * Get Item Array ID | Order ID.
      *
-     * @return int|null
+     * @return string
      */
-    public function getId();
+    public function getId(): ?string;
 
     /**
      * Set Item Array ID | Order ID.
      *
-     * @param int|null $id
+     * @param string $id
      *
      * @return ItemInterface
      */
-    public function setId($id = null);
+    public function setId($id = null): self;
 
     /**
      * Get Menu Name.
+     *
+     * @return string
      */
     public function getLabel(): string;
 
     /**
      * Change Name Menu Item.
      *
+     * @param string $label
+     *
      * @return ItemInterface
      */
-    public function setLabel(string $label);
+    public function setLabel(string $label): self;
 
     /**
      * Get Label After HTML.
+     *
+     * @return string
      */
     public function getLabelAfterHtml(): string;
 
     /**
      * Label After Append HTML.
      *
-     * @return mixed
+     * @param string $html
+     *
+     * @return ItemInterface
      */
-    public function setLabelAfterHtml(string $html);
+    public function setLabelAfterHtml(string $html): self;
 
     /**
      * Get Menu Item URL.
+     *
+     * @return string
      */
     public function getLink(): string;
 
     /**
      * Change Menu URL.
      *
+     * @param string $link
+     *
      * @return ItemInterface
      */
-    public function setLink(string $link);
+    public function setLink(string $link): self;
 
     /**
      * Get Link After HTML.
+     *
+     * @return string
      */
     public function getLinkAfterHtml(): string;
 
     /**
      * Label Link Append HTML.
      *
-     * @return mixed
+     * @param string $html
+     *
+     * @return ItemInterface
      */
-    public function setLinkAfterHtml(string $html);
+    public function setLinkAfterHtml(string $html): self;
 
     /**
      * Get Order Number.
+     *
+     * @return int
      */
     public function getOrder(): int;
 
     /**
      * Set Order Number.
      *
+     * @param int $order
+     *
      * @return ItemInterface
      */
-    public function setOrder(int $order);
+    public function setOrder(int $order): self;
 
     /**
      * Get Menu Route Name.
+     *
+     * @return array
      */
     public function getRoute(): array;
 
     /**
      * Change Menu Route.
      *
+     * @param string $route
+     * @param array $params
+     *
      * @return ItemInterface
      */
-    public function setRoute(string $route, array $params = []);
+    public function setRoute(string $route, array $params = []): self;
 
     /**
      * Get Link Attributes "<a>".
+     *
+     * @return array
      */
     public function getLinkAttr(): array;
 
     /**
      * Set Link Attributes "<a>".
      *
+     * @param array $linkAttr
+     *
      * @return ItemInterface
      */
-    public function setLinkAttr(array $linkAttr);
+    public function setLinkAttr(array $linkAttr): self;
 
     /**
      * Get List Attributes "<li>".
+     *
+     * @return array
      */
     public function getListAttr(): array;
 
     /**
      * Set List Attributes "<li>".
      *
+     * @param array $listAttr
+     *
      * @return ItemInterface
      */
-    public function setListAttr(array $listAttr);
+    public function setListAttr(array $listAttr): self;
 
     /**
      * Get Child List Attributes "<ul>".
+     *
+     * @return array
      */
     public function getChildAttr(): array;
 
     /**
      * Set Child List Attributes "<ul>".
      *
+     * @param array $childAttr
+     *
      * @return ItemInterface
      */
-    public function setChildAttr(array $childAttr);
+    public function setChildAttr(array $childAttr): self;
 
     /**
      * Get Label Attributes.
+     *
+     * @return array
      */
     public function getLabelAttr(): array;
 
     /**
      * Set Label Interface.
      *
+     * @param array $labelAttr
+     *
      * @return ItemInterface
      */
-    public function setLabelAttr(array $labelAttr);
+    public function setLabelAttr(array $labelAttr): self;
 
     /**
      * Get Extra Data Menu Item.
      *
+     * @param string $name
      * @param false $default
      *
      * @return mixed
@@ -171,23 +213,28 @@ interface ItemInterface extends \ArrayAccess
     /**
      * Set Extra Data Menu Item.
      *
+     * @param string $name
      * @param $value
      *
      * @return ItemInterface
      */
-    public function setExtra(string $name, $value);
+    public function setExtra(string $name, $value): self;
 
     /**
      * Get Access Roles Menu Item.
+     *
+     * @return array
      */
     public function getRoles(): array;
 
     /**
      * Set Access Roles Menu Item.
      *
+     * @param array $roles
+     *
      * @return ItemInterface
      */
-    public function setRoles(array $roles);
+    public function setRoles(array $roles): self;
 
     /**
      * Get Child Items.
@@ -199,9 +246,11 @@ interface ItemInterface extends \ArrayAccess
     /**
      * Set Child Items.
      *
+     * @param array $child
+     *
      * @return ItemInterface
      */
-    public function setChild(array $child);
+    public function setChild(array $child): self;
 
     /**
      * Add Child.
@@ -211,7 +260,7 @@ interface ItemInterface extends \ArrayAccess
      *
      * @return ItemInterface
      */
-    public function addChild($child, $order = null);
+    public function addChild($child, $order = null): self;
 
     /**
      * Add Child to Parent Item.
@@ -221,14 +270,14 @@ interface ItemInterface extends \ArrayAccess
      *
      * @return ItemInterface
      */
-    public function addChildParent($child, $order = null);
+    public function addChildParent($child, $order = null): self;
 
     /**
      * Get Parent Menu Item.
      *
      * @return ItemInterface|null
      */
-    public function getParent();
+    public function getParent(): ?self;
 
     /**
      * Set Parent Menu Item.
@@ -237,7 +286,7 @@ interface ItemInterface extends \ArrayAccess
      *
      * @return ItemInterface
      */
-    public function setParent(self $item);
+    public function setParent(self $item): self;
 
     /**
      * Check Menu is Root.

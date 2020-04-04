@@ -20,6 +20,11 @@ interface ItemProcessInterface
 {
     /**
      * Item Processor.
+     *
+     * @param ItemInterface $menu
+     * @param array $options
+     *
+     * @return ItemInterface
      */
     public function processMenu(ItemInterface $menu, array $options = []): ItemInterface;
 }
