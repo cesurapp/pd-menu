@@ -123,8 +123,10 @@ class ItemProcess implements ItemProcessInterface
             }
 
             // Item Security
-            if ($child->getRoles() && !$this->security->isGranted($child->getRoles())) {
-                unset($childs[$child->getId()]);
+            foreach ($child->getRoles() as $role) {
+                if (!$this->security->isGranted($role)) {
+                    unset($childs[$child->getId()]);
+                }
             }
         }
 
