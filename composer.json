@@ -18,7 +18,7 @@
   ],
   "require": {
     "php": "^7.3.0",
-    "twig/twig": "~2",
+    "twig/twig": "*",
     "symfony/event-dispatcher": "*"
   },
   "autoload": {
