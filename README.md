@@ -1,5 +1,5 @@
 # pdMenu Bundle
-Simple fast object-oriented menu maker for Symfony 4
+Simple fast object-oriented menu maker for Symfony 5
 
 [![Packagist](https://img.shields.io/packagist/dt/appaydin/pd-menu.svg)](https://github.com/appaydin/pd-menu)
 [![Github Release](https://img.shields.io/github/release/appaydin/pd-menu.svg)](https://github.com/appaydin/pd-menu)
