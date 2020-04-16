@@ -101,6 +101,7 @@ class Item implements ItemInterface
     /**
      * Item constructor.
      *
+     * @param string $id
      * @param $event
      */
     public function __construct(string $id, $event)
@@ -111,15 +112,15 @@ class Item implements ItemInterface
 
     public function isEvent(): bool
     {
-        return $this->event;
+        return (int)$this->event;
     }
 
-    public function getId()
+    public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function setId($id = null)
+    public function setId($id = null): ItemInterface
     {
         $this->id = $id;
 
@@ -131,7 +132,7 @@ class Item implements ItemInterface
         return $this->label;
     }
 
-    public function setLabel(string $label)
+    public function setLabel(string $label): ItemInterface
     {
         $this->label = $label;
 
@@ -143,7 +144,7 @@ class Item implements ItemInterface
         return $this->labelAfterHtml;
     }
 
-    public function setLabelAfterHtml(string $html)
+    public function setLabelAfterHtml(string $html): ItemInterface
     {
         $this->labelAfterHtml = $html;
 
@@ -155,7 +156,7 @@ class Item implements ItemInterface
         return $this->link;
     }
 
-    public function setLink(string $link)
+    public function setLink(string $link): ItemInterface
     {
         $this->link = $link;
 
@@ -167,7 +168,7 @@ class Item implements ItemInterface
         return $this->linkAfterHtml;
     }
 
-    public function setLinkAfterHtml(string $html)
+    public function setLinkAfterHtml(string $html): ItemInterface
     {
         $this->linkAfterHtml = $html;
 
@@ -179,7 +180,7 @@ class Item implements ItemInterface
         return $this->order;
     }
 
-    public function setOrder(int $order)
+    public function setOrder(int $order): ItemInterface
     {
         $this->order = $order;
 
@@ -191,7 +192,7 @@ class Item implements ItemInterface
         return $this->route;
     }
 
-    public function setRoute(string $route, array $params = [])
+    public function setRoute(string $route, array $params = []): ItemInterface
     {
         $this->route = [
             'name' => $route,
@@ -206,7 +207,7 @@ class Item implements ItemInterface
         return $this->linkAttr;
     }
 
-    public function setLinkAttr(array $linkAttr)
+    public function setLinkAttr(array $linkAttr): ItemInterface
     {
         $this->linkAttr = array_merge($this->linkAttr, $linkAttr);
 
@@ -218,7 +219,7 @@ class Item implements ItemInterface
         return $this->listAttr;
     }
 
-    public function setListAttr(array $listAttr)
+    public function setListAttr(array $listAttr): ItemInterface
     {
         $this->listAttr = array_merge($this->listAttr, $listAttr);
 
@@ -230,7 +231,7 @@ class Item implements ItemInterface
         return $this->childAttr;
     }
 
-    public function setChildAttr(array $childAttr)
+    public function setChildAttr(array $childAttr): ItemInterface
     {
         $this->childAttr = array_merge($this->childAttr, $childAttr);
 
@@ -242,7 +243,7 @@ class Item implements ItemInterface
         return $this->labelAttr;
     }
 
-    public function setLabelAttr(array $labelAttr)
+    public function setLabelAttr(array $labelAttr): ItemInterface
     {
         $this->labelAttr = array_merge($this->labelAttr, $labelAttr);
 
@@ -258,7 +259,7 @@ class Item implements ItemInterface
         return $default;
     }
 
-    public function setExtra(string $name, $value)
+    public function setExtra(string $name, $value): ItemInterface
     {
         if (\is_array($this->extra)) {
             $this->extra[$name] = $value;
@@ -274,7 +275,7 @@ class Item implements ItemInterface
         return $this->roles;
     }
 
-    public function setRoles(array $roles)
+    public function setRoles(array $roles): ItemInterface
     {
         $this->roles = array_merge($this->roles, $roles);
 
@@ -286,14 +287,14 @@ class Item implements ItemInterface
         return $this->child;
     }
 
-    public function setChild(array $child)
+    public function setChild(array $child): ItemInterface
     {
         $this->child = $child;
 
         return $this;
     }
 
-    public function addChild($child, $order = null)
+    public function addChild($child, $order = null): ItemInterface
     {
         // Create New Item
         if (!$child instanceof ItemInterface) {
@@ -311,17 +312,17 @@ class Item implements ItemInterface
         return $child;
     }
 
-    public function addChildParent($child, $order = null)
+    public function addChildParent($child, $order = null): ItemInterface
     {
         return $this->parent->addChild($child, $order);
     }
 
-    public function getParent()
+    public function getParent(): ?ItemInterface
     {
         return $this->parent;
     }
 
-    public function setParent(ItemInterface $item)
+    public function setParent(ItemInterface $item): ItemInterface
     {
         if ($item === $this) {
             throw new \InvalidArgumentException('Item cannot be a child of itself');

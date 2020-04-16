@@ -20,6 +20,10 @@ class Menu implements MenuInterface
 {
     /**
      * Creating Menu.
+     *
+     * @param array $options
+     *
+     * @return ItemInterface
      */
     public function createMenu(array $options = []): ItemInterface
     {
@@ -29,7 +33,10 @@ class Menu implements MenuInterface
     /**
      * Create Menu Item.
      *
+     * @param string $name
      * @param bool $event
+     *
+     * @return ItemInterface
      */
     final public function createRoot(string $name, $event = true): ItemInterface
     {

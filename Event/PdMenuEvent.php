@@ -26,9 +26,6 @@ class PdMenuEvent extends Event
      */
     protected $menu;
 
-    /**
-     * MainNavEvent constructor.
-     */
     public function __construct(ItemInterface $menu)
     {
         $this->menu = $menu;
