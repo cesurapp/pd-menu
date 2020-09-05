@@ -38,11 +38,6 @@ class MenuExtension extends AbstractExtension
     private $itemProcess;
 
     /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
      * @var TranslatorInterface
      */
     private $translator;
@@ -60,12 +55,10 @@ class MenuExtension extends AbstractExtension
         'iconTemplate' => '<i class="material-icons">itext</i>',
     ];
 
-    public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess,
-                                ContainerInterface $container, TranslatorInterface $translator)
+    public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess, TranslatorInterface $translator)
     {
         $this->engine = $engine;
         $this->itemProcess = $itemProcess;
-        $this->container = $container;
         $this->translator = $translator;
     }
 
@@ -97,7 +90,7 @@ class MenuExtension extends AbstractExtension
         $options = array_merge($this->defaultOptions, $options);
 
         // Get Menu
-        $menu = $this->container->has($menuClass) ? $this->container->get($menuClass) : new $menuClass();
+        $menu = new $menuClass();
 
         // Render
         if ($menu instanceof MenuInterface) {
@@ -124,7 +117,7 @@ class MenuExtension extends AbstractExtension
         $options = array_merge($this->defaultOptions, $options);
 
         // Get Menu
-        $menu = $this->container->has($menuClass) ? $this->container->get($menuClass) : new $menuClass();
+        $menu = new $menuClass();
 
         // Render
         if ($menu instanceof MenuInterface) {
