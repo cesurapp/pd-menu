@@ -28,6 +28,13 @@ class PdMenuExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        // Load Configuration
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        // Set Configuration
+        $container->setParameter('pd_menu', $config);
+
         // Load Services
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

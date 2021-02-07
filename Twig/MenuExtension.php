@@ -16,6 +16,7 @@ use Pd\MenuBundle\Builder\ItemProcessInterface;
 use Pd\MenuBundle\Builder\MenuInterface;
 use Pd\MenuBundle\Render\RenderInterface;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -31,35 +32,28 @@ class MenuExtension extends AbstractExtension
      * @var RenderInterface
      */
     private $engine;
-
     /**
      * @var ItemProcessInterface
      */
     private $itemProcess;
-
     /**
      * @var TranslatorInterface
      */
     private $translator;
-
     /**
-     * Default Menu Options.
-     *
-     * @var array
+     * @var ParameterBagInterface
      */
-    private $defaultOptions = [
-        'template' => '@PdMenu/Default/menu.html.twig',
-        'depth' => null,
-        'currentClass' => 'active',
-        'trans_domain' => null,
-        'iconTemplate' => '<i class="material-icons">itext</i>',
-    ];
+    private ParameterBagInterface $parameterBag;
 
-    public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess, TranslatorInterface $translator)
+    public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess,
+                                TranslatorInterface $translator,
+                                ParameterBagInterface $parameterBag
+    )
     {
         $this->engine = $engine;
         $this->itemProcess = $itemProcess;
         $this->translator = $translator;
+        $this->parameterBag = $parameterBag;
     }
 
     /**
@@ -82,12 +76,12 @@ class MenuExtension extends AbstractExtension
      * @param string $menuClass
      * @param array $options
      *
-     * @return string
+     * @return string|null
      */
-    public function renderMenu(string $menuClass = '', $options = []): string
+    public function renderMenu(string $menuClass = '', $options = []): ?string
     {
         // Merge Options
-        $options = array_merge($this->defaultOptions, $options);
+        $options = array_merge($this->parameterBag->get('pd_menu'), $options);
 
         // Get Menu
         $menu = new $menuClass();
@@ -100,7 +94,7 @@ class MenuExtension extends AbstractExtension
             return $this->engine->render($menu, $options);
         }
 
-        return false;
+        return null;
     }
 
     /**
@@ -109,12 +103,12 @@ class MenuExtension extends AbstractExtension
      * @param string $menuClass
      * @param array $options
      *
-     * @return ItemInterface|bool
+     * @return ItemInterface|null
      */
-    public function getMenu(string $menuClass, $options = [])
+    public function getMenu(string $menuClass, $options = []): ?ItemInterface
     {
         // Merge Options
-        $options = array_merge($this->defaultOptions, $options);
+        $options = array_merge($this->parameterBag->get('pd_menu'), $options);
 
         // Get Menu
         $menu = new $menuClass();
@@ -124,7 +118,7 @@ class MenuExtension extends AbstractExtension
             return $this->itemProcess->processMenu($menu->createMenu($options), $options);
         }
 
-        return false;
+        return null;
     }
 
     /**
@@ -148,7 +142,8 @@ class MenuExtension extends AbstractExtension
 
             if ('title' === mb_strtolower($key)) {
                 if (!isset($array['title_translate'])) {
-                    $value = $this->translator->trans($value, [], $options['trans_domain'] ?? null);
+                    $value = $this->translator->trans($value, [],
+                        $options['trans_domain'] ?? $this->parameterBag->get('pd_menu')['trans_domain']);
                 }
             }
 

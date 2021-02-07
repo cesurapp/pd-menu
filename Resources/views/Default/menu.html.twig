@@ -12,12 +12,13 @@
 
 {# Create Menu Item #}
 {% block menu_item %}
-    <li {{ arrayToAttr(menu.listAttr, [], options) }}>
+    {% set dropdown = menu.child|length > 0 %}
+    <li {{ arrayToAttr(menu.listAttr, {'class': dropdown ? 'dropdown' : ''}, options) }}>
         {# Create Link #}
         {% if menu.link %}
             <a href="{{ menu.link }}" {{ arrayToAttr(menu.linkAttr, [], options) }}>
                 {% if menu.extra('label_icon') %}
-                    {{ options.iconTemplate|replace({ 'itext': menu.extra('label_icon') })|raw }}
+                    {{ options.iconTemplate|replace({ '&text': menu.extra('label_icon') })|raw }}
                 {% endif %}
                 <span {{ arrayToAttr(menu.labelAttr, [], options) }}>
                     {{ menu.extra('label_translate', true) ? menu.label|trans([], options.trans_domain)|raw : menu.label|raw }}
@@ -27,7 +28,7 @@
             {{ menu.linkAfterHtml|raw }}
         {% else %}
             {% if menu.extra('label_icon') %}
-                {{ options.iconTemplate|replace({ 'itext': menu.extra('label_icon') })|raw }}
+                {{ options.iconTemplate|replace({ '&text': menu.extra('label_icon') })|raw }}
             {% endif %}
             <span {{ arrayToAttr(menu.labelAttr, [], options) }}>
                     {{ menu.extra('label_translate', true) ? menu.label|trans([], options.trans_domain)|raw : menu.label|raw }}

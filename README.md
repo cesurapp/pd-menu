@@ -15,7 +15,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```console
-$ composer require appaydin/pd-menu
+composer require appaydin/pd-menu
 ```
 
 This command requires you to have Composer installed globally, as explained
@@ -200,6 +200,19 @@ You can change the default options.
     'trans_domain': 'admin',
     'iconTemplate' => '<i class="material-icons">itext</i>'
 }) }}
+```
+
+You can change the default options globally. 
+
+```twig
+config/packages/pd_menu.yaml
+
+pd_menu:
+    template: '@PdMenu/Default/menu.html.twig',
+    depth: null,
+    currentClass: active
+    trans_domain: admin,
+    iconTemplate: '<i class="fa&text"></i>'
 ```
 
 Create Menu Event & Event Listener
