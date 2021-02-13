@@ -13,7 +13,7 @@
 {# Create Menu Item #}
 {% block menu_item %}
     {% set dropdown = menu.child|length > 0 %}
-    <li {{ arrayToAttr(menu.listAttr, {'class': dropdown ? 'dropdown' : ''}, options) }}>
+    <li {{ arrayToAttr(menu.listAttr, {'class': dropdown ? 'dropdown' : '', 'data-id': menu.id}, options) }}>
         {# Create Link #}
         {% if menu.link %}
             <a href="{{ menu.link }}" {{ arrayToAttr(menu.linkAttr, [], options) }}>
