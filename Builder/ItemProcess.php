@@ -132,7 +132,7 @@ class ItemProcess implements ItemProcessInterface
 
         // Sort Item
         usort($childs, static function ($a, $b) {
-            return $a->getOrder() > $b->getOrder();
+            return $a->getOrder() > $b->getOrder() ? 1 : ($a->getOrder() === $b->getOrder() ? 0 : -1);
         });
 
         // Set Childs
