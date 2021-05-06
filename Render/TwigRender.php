@@ -21,24 +21,11 @@ use Twig\Environment;
  */
 class TwigRender implements RenderInterface
 {
-    /**
-     * @var Environment
-     */
-    private $engine;
-
-    public function __construct(Environment $engine)
+    public function __construct(
+        private Environment $engine)
     {
-        $this->engine = $engine;
     }
 
-    /**
-     * Render Menu.
-     *
-     * @param ItemInterface $item
-     * @param array $options
-     *
-     * @return string
-     */
     public function render(ItemInterface $item, array $options = []): string
     {
         return $this->engine->render($options['template'], ['menu' => $item, 'options' => $options]);

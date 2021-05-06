@@ -14,8 +14,8 @@ namespace Pd\MenuBundle\Twig;
 use Pd\MenuBundle\Builder\ItemInterface;
 use Pd\MenuBundle\Builder\ItemProcessInterface;
 use Pd\MenuBundle\Builder\MenuInterface;
+use Pd\MenuBundle\Locator\MenuLocator;
 use Pd\MenuBundle\Render\RenderInterface;
-use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
@@ -28,40 +28,20 @@ use Twig\TwigFunction;
  */
 class MenuExtension extends AbstractExtension
 {
-    /**
-     * @var RenderInterface
-     */
-    private $engine;
-    /**
-     * @var ItemProcessInterface
-     */
-    private $itemProcess;
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-    /**
-     * @var ParameterBagInterface
-     */
-    private ParameterBagInterface $parameterBag;
-
-    public function __construct(RenderInterface $engine, ItemProcessInterface $itemProcess,
-                                TranslatorInterface $translator,
-                                ParameterBagInterface $parameterBag
+    public function __construct(
+        private RenderInterface $engine,
+        private ItemProcessInterface $itemProcess,
+        private TranslatorInterface $translator,
+        private ParameterBagInterface $parameterBag,
+        private MenuLocator $menuLocator
     )
     {
-        $this->engine = $engine;
-        $this->itemProcess = $itemProcess;
-        $this->translator = $translator;
-        $this->parameterBag = $parameterBag;
     }
 
     /**
      * Create Twig Function.
-     *
-     * @return array
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('pd_menu_render', [$this, 'renderMenu'], ['is_safe' => ['html']]),
@@ -72,19 +52,14 @@ class MenuExtension extends AbstractExtension
 
     /**
      * Render Menu.
-     *
-     * @param string $menuClass
-     * @param array $options
-     *
-     * @return string|null
      */
-    public function renderMenu(string $menuClass = '', $options = []): ?string
+    public function renderMenu(string $menuClass = '', array $options = []): ?string
     {
         // Merge Options
         $options = array_merge($this->parameterBag->get('pd_menu'), $options);
 
         // Get Menu
-        $menu = new $menuClass();
+        $menu = $this->menuLocator->get($menuClass);
 
         // Render
         if ($menu instanceof MenuInterface) {
@@ -99,19 +74,14 @@ class MenuExtension extends AbstractExtension
 
     /**
      * Get Menu Array.
-     *
-     * @param string $menuClass
-     * @param array $options
-     *
-     * @return ItemInterface|null
      */
-    public function getMenu(string $menuClass, $options = []): ?ItemInterface
+    public function getMenu(string $menuClass, array $options = []): ?ItemInterface
     {
         // Merge Options
         $options = array_merge($this->parameterBag->get('pd_menu'), $options);
 
         // Get Menu
-        $menu = new $menuClass();
+        $menu = $this->menuLocator->get($menuClass);
 
         // Render
         if ($menu instanceof MenuInterface) {
@@ -123,12 +93,6 @@ class MenuExtension extends AbstractExtension
 
     /**
      * Array to Html Attr Convert.
-     *
-     * @param array $array
-     * @param array $append
-     * @param array $options
-     *
-     * @return string
      */
     public function arrayToAttr(array $array = [], array $append = [], array $options = []): string
     {
@@ -140,11 +104,9 @@ class MenuExtension extends AbstractExtension
                 $value = implode(' ', $value);
             }
 
-            if ('title' === mb_strtolower($key)) {
-                if (!isset($array['title_translate'])) {
-                    $value = $this->translator->trans($value, [],
-                        $options['trans_domain'] ?? $this->parameterBag->get('pd_menu')['trans_domain']);
-                }
+            if (('title' === mb_strtolower($key)) && !isset($array['title_translate'])) {
+                $value = $this->translator->trans($value, [],
+                    $options['trans_domain'] ?? $this->parameterBag->get('pd_menu')['trans_domain']);
             }
 
             $attr .= sprintf('%s="%s" ', $key, $value);

@@ -18,92 +18,27 @@ namespace Pd\MenuBundle\Builder;
  */
 class Item implements ItemInterface
 {
-    /**
-     * @var int
-     */
     protected $id;
-
-    /**
-     * @var string
-     */
-    protected $label = '';
-
-    /**
-     * @var string
-     */
-    protected $labelAfterHtml = '';
-
-    /**
-     * @var string
-     */
-    protected $link = '';
-
-    /**
-     * @var string
-     */
-    protected $linkAfterHtml = '';
-
-    /**
-     * @var int
-     */
+    protected string $label = '';
+    protected string $labelAfterHtml = '';
+    protected string $link = '';
+    protected string $linkAfterHtml = '';
     protected $order;
-
-    /**
-     * @var array
-     */
-    protected $route = [];
-
-    /**
-     * @var array
-     */
-    protected $linkAttr = [];
-
-    /**
-     * @var array
-     */
-    protected $listAttr = [];
-
-    /**
-     * @var array
-     */
-    protected $childAttr = [];
-
-    /**
-     * @var array
-     */
-    protected $labelAttr = [];
-
-    /**
-     * @var array
-     */
-    protected $extra = [];
-
-    /**
-     * @var array
-     */
-    protected $roles = [];
+    protected array $route = [];
+    protected array $linkAttr = [];
+    protected array $listAttr = [];
+    protected array $childAttr = [];
+    protected array $labelAttr = [];
+    protected array $extra = [];
+    protected array $roles = [];
 
     /**
      * @var ItemInterface[]
      */
-    protected $child = [];
-
-    /**
-     * @var null | ItemInterface
-     */
+    protected array $child = [];
     protected $parent;
+    protected bool $event;
 
-    /**
-     * @var bool
-     */
-    protected $event;
-
-    /**
-     * Item constructor.
-     *
-     * @param string $id
-     * @param $event
-     */
     public function __construct(string $id, $event)
     {
         $this->id = $id;

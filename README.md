@@ -57,7 +57,7 @@ use Pd\MenuBundle\Builder\Menu;
 class FirstMenu extends Menu
 {
     /**
-     * Override 
+     * Override
      */
     public function createMenu(array $options = []): ItemInterface
     {
@@ -100,85 +100,6 @@ class FirstMenu extends Menu
         return $menu;
     }
 }
-```
-
-#### Step 2: With Service
-You can load the necessary parameters using `$options`
-
-```php
-<?php
-// src/Menu/FirstMenu.php
-
-namespace App\Menu;
-
-use Pd\MenuBundle\Builder\ItemInterface;
-use Pd\MenuBundle\Builder\Menu;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
-class FirstMenu extends Menu
-{
-    /**
-     * @var ContainerInterface 
-     */
-    private $container;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-        
-    /**
-     * Override 
-     */
-    public function createMenu(array $options = []): ItemInterface
-    {
-        // Create Root Item
-        $menu = $this
-            ->createRoot('settings_menu', true) // Create event is "settings_menu.event"
-            ->setChildAttr(['data-parent' => 'admin_account_list']); // Add Parent Menu to Html Tag
-
-        // Create Menu Items
-        $menu->addChild('nav_config_general', 1)
-            ->setLabel('nav_config_general')
-            ->setRoute('admin_settings_general')
-            ->setLinkAttr(['class' => 'nav-item'])
-            ->setRoles(['ADMIN_SETTINGS_GENERAL'])
-                // Contact
-                ->addChildParent('nav_config_contact', 5)
-                ->setLabel('nav_config_contact')
-                ->setRoute('admin_settings_contact')
-                ->setLinkAttr(['class' => 'nav-item'])
-                ->setRoles(['ADMIN_SETTINGS_CONTACT'])
-                // Email
-                ->addChildParent('nav_config_email', 10)
-                ->setLabel('nav_config_email')
-                ->setRoute('admin_settings_email')
-                ->setLinkAttr(['class' => 'nav-item'])
-                ->setRoles(['ADMIN_SETTINGS_EMAIL'])
-                // Template
-                ->addChildParent('nav_config_template')
-                ->setLabel('nav_config_template')
-                ->setRoute('admin_settings_template')
-                ->setLinkAttr(['class' => 'nav-item'])
-                ->setRoles(['ADMIN_SETTINGS_TEMPLATE'])
-                // Account
-                ->addChildParent('nav_config_user')
-                ->setLabel('nav_config_user')
-                ->setRoute('admin_settings_user')
-                ->setLinkAttr(['class' => 'nav-item'])
-                ->setRoles(['ADMIN_SETTINGS_USER']);
-
-        return $menu;
-    }
-}
-```
-Create Menu Service:
-
-```yaml
-# config/services.yaml
-
-App\Menu\FirstMenu:
-    public: true
 ```
 
 Rendering Menu
@@ -202,7 +123,7 @@ You can change the default options.
 }) }}
 ```
 
-You can change the default options globally. 
+You can change the default options globally.
 
 ```twig
 config/packages/pd_menu.yaml

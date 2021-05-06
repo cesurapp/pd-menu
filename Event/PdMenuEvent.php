@@ -21,19 +21,11 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 class PdMenuEvent extends Event
 {
-    /**
-     * @var ItemInterface
-     */
-    protected $menu;
-
-    public function __construct(ItemInterface $menu)
+    public function __construct(
+        private ItemInterface $menu)
     {
-        $this->menu = $menu;
     }
 
-    /**
-     * Get Menu.
-     */
     public function getMenu(): ItemInterface
     {
         return $this->menu;

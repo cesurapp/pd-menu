@@ -23,40 +23,17 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
  */
 class ItemProcess implements ItemProcessInterface
 {
-    /**
-     * @var RouterInterface
-     */
-    protected $router;
+    protected string $currentUri;
 
-    /**
-     * @var AuthorizationCheckerInterface
-     */
-    protected $security;
-
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $eventDispatcher;
-
-    /**
-     * @var string
-     */
-    protected $currentUri;
-
-    public function __construct(RouterInterface $router, AuthorizationCheckerInterface $security, EventDispatcherInterface $eventDispatcher)
+    public function __construct(
+        private RouterInterface $router,
+        private AuthorizationCheckerInterface $security,
+        private EventDispatcherInterface $eventDispatcher)
     {
-        $this->router = $router;
-        $this->security = $security;
-        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
      * Menu Processor.
-     *
-     * @param ItemInterface $menu
-     * @param array $options
-     *
-     * @return ItemInterface
      */
     public function processMenu(ItemInterface $menu, array $options = []): ItemInterface
     {
@@ -76,11 +53,6 @@ class ItemProcess implements ItemProcessInterface
 
     /**
      * Process Menu Item.
-     *
-     * @param ItemInterface $menu
-     * @param $options
-     *
-     * @return bool
      */
     protected function recursiveProcess(ItemInterface $menu, $options): bool
     {

@@ -20,19 +20,11 @@ interface MenuInterface
 {
     /**
      * Create Menu.
-     *
-     * @param array $options
-     *
-     * @return ItemInterface
      */
     public function createMenu(array $options = []): ItemInterface;
 
     /**
      * Create Menu Item.
-     *
-     * @param string $name
-     *
-     * @return ItemInterface
      */
     public function createRoot(string $name): ItemInterface;
 }
